@@ -1,0 +1,3827 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#E8533A">
+  <title>Properttax ID - Kalkulator Pajak Properti Indonesia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-base: #F3F4F6;
+      --bg-elevated: #FFFFFF;
+      --bg-sidebar: #FFFFFF;
+      --bg-sidebar-hover: #F3F4F6;
+      --bg-sidebar-active: #F3F4F6;
+      --bg-input: #F9FAFB;
+      --bg-tooltip: #111827;
+      --bg-overlay: rgba(0, 0, 0, 0.4);
+      --bg-badge: #F3F4F6;
+      --border-subtle: #E5E7EB;
+      --border-medium: #D1D5DB;
+      --border-strong: #9CA3AF;
+      --border-focus: #E8533A;
+      --text-primary: #111827;
+      --text-secondary: #4B5563;
+      --text-tertiary: #9CA3AF;
+      --text-inverse: #FFFFFF;
+      --text-on-dark: #F9FAFB;
+      --coral: #E8533A;
+      --coral-soft: #FEF2F2;
+      --coral-muted: #FCA5A5;
+      --purple: #8B5CF6;
+      --purple-soft: #F5F3FF;
+      --purple-muted: #C4B5FD;
+      --rose: #E11D7A;
+      --rose-soft: #FDF2F8;
+      --rose-muted: #F9A8D4;
+      --sage: #10B981;
+      --sage-soft: #ECFDF5;
+      --sage-muted: #6EE7B7;
+      --amber: #F59E0B;
+      --amber-soft: #FFFBEB;
+      --amber-muted: #FCD34D;
+      --blue: #3B82F6;
+      --blue-soft: #EFF6FF;
+      --blue-muted: #93C5FD;
+      --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.04);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      --radius-full: 9999px;
+      --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+      --sidebar-width: 260px;
+      --sidebar-collapsed: 72px;
+      --header-height: 64px;
+    }
+
+    [data-theme="dark"] {
+      --bg-base: #0B0B0F;
+      --bg-elevated: #131318;
+      --bg-sidebar: #131318;
+      --bg-sidebar-hover: #1A1A22;
+      --bg-sidebar-active: #1A1A22;
+      --bg-input: #1A1A22;
+      --bg-tooltip: #1F1F28;
+      --bg-overlay: rgba(0, 0, 0, 0.6);
+      --bg-badge: #1A1A22;
+      --border-subtle: #27272F;
+      --border-medium: #353540;
+      --border-strong: #4B4B5A;
+      --border-focus: #E8533A;
+      --text-primary: #F3F4F6;
+      --text-secondary: #9CA3AF;
+      --text-tertiary: #6B7280;
+      --text-inverse: #111827;
+      --text-on-dark: #F9FAFB;
+      --coral-soft: rgba(232, 83, 58, 0.12);
+      --coral-muted: rgba(232, 83, 58, 0.35);
+      --purple-soft: rgba(139, 92, 246, 0.12);
+      --purple-muted: rgba(139, 92, 246, 0.35);
+      --rose-soft: rgba(225, 29, 122, 0.12);
+      --rose-muted: rgba(225, 29, 122, 0.35);
+      --sage-soft: rgba(16, 185, 129, 0.12);
+      --sage-muted: rgba(16, 185, 129, 0.35);
+      --amber-soft: rgba(245, 158, 11, 0.12);
+      --amber-muted: rgba(245, 158, 11, 0.35);
+      --blue-soft: rgba(59, 130, 246, 0.12);
+      --blue-muted: rgba(59, 130, 246, 0.35);
+      --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.2);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+      --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+
+    .em {
+      font-style: normal;
+      display: inline-block;
+      line-height: 1;
+      vertical-align: middle;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background-color var(--transition-slow), color var(--transition-slow);
+    }
+
+    .app-shell {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: var(--sidebar-width);
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 200;
+      transition: width var(--transition-base), background-color var(--transition-slow), border-color var(--transition-slow);
+    }
+
+    .sidebar-brand {
+      padding: 24px 20px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--coral);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: white;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(232, 83, 58, 0.3);
+      transition: transform var(--transition-fast);
+    }
+
+    .brand-icon:hover {
+      transform: scale(1.05);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-primary);
+      line-height: 1.2;
+      transition: color var(--transition-slow);
+    }
+
+    .brand-subtitle {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      letter-spacing: 0.3px;
+      margin-top: 2px;
+      text-transform: uppercase;
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      padding: 8px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      overflow-y: auto;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-item:hover {
+      background: var(--bg-sidebar-hover);
+      color: var(--text-primary);
+    }
+
+    .nav-item.active {
+      background: var(--bg-sidebar-active);
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .nav-item.active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 8px;
+      width: 3px;
+      border-radius: 0 3px 3px 0;
+      background: var(--coral);
+      transition: background var(--transition-slow);
+    }
+
+    .nav-item.active[data-module="hibah"]::before {
+      background: var(--purple);
+    }
+
+    .nav-item.active[data-module="waris"]::before {
+      background: var(--rose);
+    }
+
+    .nav-item.active[data-module="tentang"]::before {
+      background: var(--blue);
+    }
+
+    .nav-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      background: var(--bg-badge);
+      color: var(--text-tertiary);
+      transition: all var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .nav-item:hover .nav-icon {
+      color: var(--text-primary);
+    }
+
+    .nav-item.active .nav-icon {
+      background: var(--coral-soft);
+      color: var(--coral);
+    }
+
+    .nav-item.active[data-module="hibah"] .nav-icon {
+      background: var(--purple-soft);
+      color: var(--purple);
+    }
+
+    .nav-item.active[data-module="waris"] .nav-icon {
+      background: var(--rose-soft);
+      color: var(--rose);
+    }
+
+    .nav-item.active[data-module="tentang"] .nav-icon {
+      background: var(--blue-soft);
+      color: var(--blue);
+    }
+
+    .sidebar-footer {
+      padding: 16px 12px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color var(--transition-slow);
+    }
+
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: var(--bg-badge);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      border: 1px solid var(--border-subtle);
+      user-select: none;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--border-medium);
+      background: var(--bg-sidebar-hover);
+    }
+
+    .theme-toggle-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .theme-toggle-label i {
+      font-size: 14px;
+      color: var(--amber);
+    }
+
+    .theme-switch {
+      position: relative;
+      width: 40px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    .theme-switch input {
+      display: none;
+    }
+
+    .theme-switch-slider {
+      position: absolute;
+      inset: 0;
+      background: var(--border-medium);
+      border-radius: var(--radius-full);
+      transition: background var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .theme-switch-slider::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background: white;
+      border-radius: 50%;
+      top: 3px;
+      left: 3px;
+      transition: transform var(--transition-fast), background var(--transition-fast);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .theme-switch input:checked+.theme-switch-slider {
+      background: var(--coral);
+    }
+
+    .theme-switch input:checked+.theme-switch-slider::after {
+      transform: translateX(18px);
+    }
+
+    .sidebar-credit {
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-tertiary);
+      letter-spacing: 0.5px;
+    }
+
+    .main-area {
+      flex: 1;
+      margin-left: var(--sidebar-width);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      transition: margin-left var(--transition-base);
+    }
+
+    .top-bar {
+      height: var(--header-height);
+      background: var(--bg-elevated);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: all var(--transition-slow);
+    }
+
+    .top-bar-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: color var(--transition-slow);
+    }
+
+    .top-bar-title i {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      background: var(--coral-soft);
+      color: var(--coral);
+    }
+
+    .top-bar-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: var(--sage-soft);
+      border: 1px solid var(--sage-muted);
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--sage);
+      letter-spacing: 0.3px;
+    }
+
+    .top-bar-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--sage);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    .module-panel {
+      display: none;
+    }
+
+    .module-panel.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    main {
+      flex: 1;
+      padding: 28px;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .grid-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: all var(--transition-slow);
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .card-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: transparent;
+      transition: border-color var(--transition-slow);
+    }
+
+    .card-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color var(--transition-slow);
+    }
+
+    .card-title i {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      background: var(--coral-soft);
+      color: var(--coral);
+    }
+
+    .card-title.purple i {
+      background: var(--purple-soft);
+      color: var(--purple);
+    }
+
+    .card-title.rose i {
+      background: var(--rose-soft);
+      color: var(--rose);
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .form-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .form-row-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color var(--transition-slow);
+    }
+
+    .info-icon {
+      cursor: pointer;
+      color: var(--text-tertiary);
+      transition: color var(--transition-fast);
+      position: relative;
+    }
+
+    .info-icon:hover {
+      color: var(--coral);
+    }
+
+    .form-input,
+    .form-select {
+      width: 100%;
+      padding: 10px 14px;
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      transition: all var(--transition-fast);
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    .form-input:focus,
+    .form-select:focus {
+      background: var(--bg-elevated);
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px var(--coral-soft);
+    }
+
+    .form-input::placeholder {
+      color: var(--text-tertiary);
+      font-style: italic;
+    }
+
+    .form-select {
+      cursor: pointer;
+    }
+
+    .form-select option {
+      background: var(--bg-elevated);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .input-prefix {
+      position: relative;
+    }
+
+    .input-prefix input {
+      padding-left: 38px;
+    }
+
+    .prefix-label {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-tertiary);
+      font-size: 12px;
+      font-weight: 700;
+      pointer-events: none;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .form-hint {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      font-style: italic;
+      transition: color var(--transition-slow);
+    }
+
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 4px 0;
+    }
+
+    .section-divider span {
+      font-size: 10px;
+      color: var(--text-tertiary);
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      font-family: 'JetBrains Mono', monospace;
+      transition: color var(--transition-slow);
+    }
+
+    .section-divider::before,
+    .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border-subtle);
+      transition: background var(--transition-slow);
+    }
+
+    .formula-badge {
+      display: inline-flex;
+      padding: 2px 8px;
+      background: var(--bg-badge);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: var(--text-tertiary);
+      margin-left: 4px;
+      font-weight: 500;
+    }
+
+    .section-heading {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed var(--border-subtle);
+      margin-bottom: 2px;
+      transition: color var(--transition-slow), border-color var(--transition-slow);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-md);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      border: 1px solid transparent;
+      outline: none;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn-primary {
+      background: var(--coral);
+      color: white;
+      box-shadow: 0 4px 12px rgba(232, 83, 58, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: #D44830;
+      box-shadow: 0 6px 16px rgba(232, 83, 58, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary.purple {
+      background: var(--purple);
+      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25);
+    }
+
+    .btn-primary.purple:hover {
+      background: #7C3AED;
+      box-shadow: 0 6px 16px rgba(139, 92, 246, 0.35);
+    }
+
+    .btn-primary.rose {
+      background: var(--rose);
+      box-shadow: 0 4px 12px rgba(225, 29, 122, 0.25);
+    }
+
+    .btn-primary.rose:hover {
+      background: #C4166A;
+      box-shadow: 0 6px 16px rgba(225, 29, 122, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-xs);
+    }
+
+    .btn-outline:hover {
+      background: var(--bg-input);
+      border-color: var(--border-medium);
+      color: var(--text-primary);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-tertiary);
+      border: 1px solid var(--border-subtle);
+      padding: 8px 12px;
+      font-size: 12px;
+      box-shadow: none;
+    }
+
+    .btn-ghost:hover {
+      background: var(--bg-input);
+      color: var(--text-secondary);
+      border-color: var(--border-medium);
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 6px;
+      flex-wrap: wrap;
+    }
+
+    .btn-row .btn {
+      flex: 1;
+      min-width: 100px;
+    }
+
+    .result-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+      text-align: center;
+      color: var(--text-tertiary);
+      gap: 16px;
+      transition: color var(--transition-slow);
+    }
+
+    .result-empty svg {
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08));
+    }
+
+    [data-theme="dark"] .result-empty svg {
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+    }
+
+    .result-empty p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      transition: color var(--transition-slow);
+    }
+
+    .result-summary {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 20px;
+    }
+
+    .result-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 14px 16px;
+      background: var(--amber-soft);
+      border: 1px solid var(--amber-muted);
+      border-radius: var(--radius-md);
+      margin-bottom: 4px;
+      transition: all var(--transition-slow);
+    }
+
+    .result-meta.purple-meta {
+      background: var(--purple-soft);
+      border-color: var(--purple-muted);
+    }
+
+    .result-meta.rose-meta {
+      background: var(--rose-soft);
+      border-color: var(--rose-muted);
+    }
+
+    .result-meta.gold-meta {
+      background: var(--amber-soft);
+      border-color: var(--amber-muted);
+    }
+
+    .result-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .result-meta-label {
+      font-size: 9px;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      transition: color var(--transition-slow);
+    }
+
+    .result-meta-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--text-primary);
+      font-weight: 700;
+      transition: color var(--transition-slow);
+    }
+
+    .tax-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      transition: all var(--transition-fast);
+      cursor: pointer;
+      background: var(--bg-elevated);
+      box-shadow: var(--shadow-xs);
+    }
+
+    .tax-row:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-1px);
+      border-color: var(--border-medium);
+    }
+
+    .tax-row:active {
+      transform: translateY(0);
+    }
+
+    .tax-row-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .tax-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+      transition: all var(--transition-fast);
+    }
+
+    .tax-icon.pph {
+      background: var(--coral-soft);
+      color: var(--coral);
+      border-color: var(--coral-muted);
+    }
+
+    .tax-icon.ppn {
+      background: var(--blue-soft);
+      color: var(--blue);
+      border-color: var(--blue-muted);
+    }
+
+    .tax-icon.bphtb {
+      background: var(--sage-soft);
+      color: var(--sage);
+      border-color: var(--sage-muted);
+    }
+
+    .tax-icon.total {
+      background: var(--amber-soft);
+      color: var(--amber);
+      border-color: var(--amber-muted);
+    }
+
+    .tax-icon.hibah {
+      background: var(--purple-soft);
+      color: var(--purple);
+      border-color: var(--purple-muted);
+    }
+
+    .tax-icon.waris {
+      background: var(--rose-soft);
+      color: var(--rose);
+      border-color: var(--rose-muted);
+    }
+
+    .tax-icon.bebas {
+      background: var(--sage-soft);
+      color: var(--sage);
+      border-color: var(--sage-muted);
+    }
+
+    .tax-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      transition: color var(--transition-slow);
+    }
+
+    .tax-desc {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      transition: color var(--transition-slow);
+    }
+
+    .tax-amount {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-align: right;
+      transition: color var(--transition-slow);
+    }
+
+    .tax-amount.zero {
+      color: var(--text-tertiary);
+      font-style: italic;
+    }
+
+    .tax-amount.total {
+      color: var(--coral);
+      font-size: 16px;
+    }
+
+    .tax-amount.purple {
+      color: var(--purple);
+      font-size: 16px;
+    }
+
+    .tax-amount.rose-total {
+      color: var(--rose);
+      font-size: 16px;
+    }
+
+    .total-row {
+      background: var(--amber-soft);
+      border-color: var(--amber-muted);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .total-row:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .total-row.purple-total {
+      background: var(--purple-soft);
+      border-color: var(--purple-muted);
+    }
+
+    .total-row.rose-total-row {
+      background: var(--rose-soft);
+      border-color: var(--rose-muted);
+    }
+
+    .detail-panel {
+      margin-top: 4px;
+      padding: 14px 16px;
+      background: var(--bg-input);
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      border-top: 1px dashed var(--border-medium);
+      font-size: 13px;
+      color: var(--text-secondary);
+      display: none;
+      animation: slideDown 0.2s ease;
+      transition: all var(--transition-slow);
+    }
+
+    .detail-panel.open {
+      display: block;
+    }
+
+    .detail-panel .law-ref {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      background: var(--bg-tooltip);
+      border-radius: var(--radius-sm);
+      font-size: 10px;
+      color: var(--text-on-dark);
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.5px;
+    }
+
+    .detail-panel .calc-steps {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-top: 8px;
+      padding: 10px 12px;
+      background: var(--bg-elevated);
+      border: 1px dashed var(--border-medium);
+      border-radius: var(--radius-md);
+      line-height: 1.9;
+      white-space: pre-line;
+      transition: all var(--transition-slow);
+    }
+
+    .insentif-badge,
+    .bebas-badge,
+    .warning-badge,
+    .kena-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: var(--radius-md);
+      font-size: 11px;
+      font-weight: 600;
+      margin: 6px 0;
+      letter-spacing: 0.3px;
+    }
+
+    .insentif-badge {
+      background: var(--sage-soft);
+      border: 1px solid var(--sage-muted);
+      color: var(--sage);
+    }
+
+    .bebas-badge {
+      background: var(--sage-soft);
+      border: 1px solid var(--sage-muted);
+      color: var(--sage);
+    }
+
+    .warning-badge {
+      background: var(--amber-soft);
+      border: 1px solid var(--amber-muted);
+      color: var(--amber);
+    }
+
+    .kena-badge {
+      background: var(--coral-soft);
+      border: 1px solid var(--coral-muted);
+      color: var(--coral);
+    }
+
+    .konsultan-panel {
+      margin-top: 4px;
+      padding: 16px;
+      background: var(--amber-soft);
+      border: 1px solid var(--amber-muted);
+      border-radius: var(--radius-md);
+      display: none;
+      transition: all var(--transition-slow);
+    }
+
+    .konsultan-panel.show {
+      display: block;
+    }
+
+    .konsultan-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--amber);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .konsultan-tip {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
+      background: var(--bg-elevated);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      border-left: 3px solid var(--amber);
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      box-shadow: var(--shadow-xs);
+      transition: all var(--transition-slow);
+    }
+
+    .konsultan-tip:last-child {
+      margin-bottom: 0;
+    }
+
+    .konsultan-tip i {
+      color: var(--amber);
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .history-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .history-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      box-shadow: var(--shadow-xs);
+    }
+
+    .history-item:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-1px);
+      border-color: var(--border-medium);
+      background: var(--bg-elevated);
+    }
+
+    .history-item:active {
+      transform: translateY(0);
+    }
+
+    .history-item-type {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      transition: color var(--transition-slow);
+    }
+
+    .history-item-date {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      font-family: 'JetBrains Mono', monospace;
+      transition: color var(--transition-slow);
+    }
+
+    .history-item-amount {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--coral);
+      text-align: right;
+    }
+
+    .history-item-price {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      text-align: right;
+      font-family: 'JetBrains Mono', monospace;
+      transition: color var(--transition-slow);
+    }
+
+    .history-empty {
+      padding: 24px;
+      text-align: center;
+      color: var(--text-tertiary);
+      font-size: 13px;
+      font-style: italic;
+      transition: color var(--transition-slow);
+    }
+
+    .history-type-tag {
+      display: inline-flex;
+      padding: 2px 7px;
+      border-radius: var(--radius-sm);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      border: 1px solid;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    .tag-jual {
+      background: var(--coral-soft);
+      color: var(--coral);
+      border-color: var(--coral-muted);
+    }
+
+    .tag-hibah {
+      background: var(--purple-soft);
+      color: var(--purple);
+      border-color: var(--purple-muted);
+    }
+
+    .tag-waris {
+      background: var(--rose-soft);
+      color: var(--rose);
+      border-color: var(--rose-muted);
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--text-tertiary);
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: color var(--transition-slow);
+    }
+
+    .toggle {
+      position: relative;
+      width: 38px;
+      height: 22px;
+      cursor: pointer;
+    }
+
+    .toggle input {
+      display: none;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      inset: 0;
+      background: var(--border-medium);
+      border-radius: var(--radius-full);
+      transition: background var(--transition-fast);
+    }
+
+    .toggle-slider::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background: white;
+      border-radius: 50%;
+      top: 3px;
+      left: 3px;
+      transition: transform var(--transition-fast);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .toggle input:checked+.toggle-slider {
+      background: var(--coral);
+    }
+
+    .toggle input:checked+.toggle-slider::after {
+      transform: translateX(16px);
+    }
+
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border-subtle);
+      background: transparent;
+      transition: border-color var(--transition-slow);
+    }
+
+    .tab {
+      padding: 12px 20px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all var(--transition-fast);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      background: transparent;
+    }
+
+    .tab:hover {
+      color: var(--text-secondary);
+    }
+
+    .tab.active {
+      color: var(--coral);
+      border-bottom-color: var(--coral);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .result-actions {
+      display: flex;
+      gap: 8px;
+      padding: 14px 20px;
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-input);
+      flex-wrap: wrap;
+      transition: all var(--transition-slow);
+    }
+
+    .tooltip {
+      position: relative;
+    }
+
+    .tooltip::after {
+      content: attr(data-tip);
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg-tooltip);
+      border: 1px solid var(--border-medium);
+      color: var(--text-on-dark);
+      font-size: 11px;
+      font-family: 'Inter', sans-serif;
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+      white-space: normal;
+      text-align: center;
+      z-index: 200;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity var(--transition-fast), transform var(--transition-fast);
+      line-height: 1.5;
+      box-shadow: var(--shadow-lg);
+      width: 220px;
+      font-weight: 400;
+      letter-spacing: normal;
+      text-transform: none;
+      font-style: normal;
+      transform: translateX(-50%) translateY(4px);
+    }
+
+    .tooltip:hover::after {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      padding: 12px 20px;
+      background: var(--bg-tooltip);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-md);
+      color: var(--text-on-dark);
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: var(--shadow-xl);
+      z-index: 1000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      letter-spacing: 0.3px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast i {
+      color: var(--amber);
+      font-size: 16px;
+    }
+
+    .info-panel {
+      padding: 14px 16px;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-xs);
+      margin-bottom: 10px;
+      background: var(--bg-elevated);
+      transition: all var(--transition-slow);
+    }
+
+    .info-panel:last-child {
+      margin-bottom: 0;
+    }
+
+    .info-panel-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .info-panel-body {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      transition: color var(--transition-slow);
+    }
+
+    .info-panel-ref {
+      margin-top: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--text-tertiary);
+      transition: color var(--transition-slow);
+    }
+
+    .disclaimer-box {
+      margin: 16px 16px 0;
+      padding: 12px 14px;
+      background: var(--amber-soft);
+      border: 1px dashed var(--amber-muted);
+      border-radius: var(--radius-md);
+      font-size: 11px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      transition: all var(--transition-slow);
+    }
+
+    .disclaimer-box strong {
+      color: var(--amber);
+    }
+
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-elevated);
+      padding: 14px 28px;
+      text-align: center;
+      transition: all var(--transition-slow);
+    }
+
+    footer span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-tertiary);
+      letter-spacing: 0.5px;
+      transition: color var(--transition-slow);
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-4px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      animation: fadeInUp 0.35s ease;
+    }
+
+    /* ========================================
+       MOBILE HEADER (hamburger + brand)
+       ======================================== */
+    .mobile-header {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--header-height);
+      background: var(--bg-sidebar);
+      border-bottom: 1px solid var(--border-subtle);
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      z-index: 350;
+      transition: background var(--transition-slow), border-color var(--transition-slow);
+    }
+
+    .mobile-header-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .mobile-header-brand .brand-title {
+      font-size: 17px;
+    }
+
+    .mobile-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .hamburger-btn {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      border-radius: var(--radius-md);
+      transition: background var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .hamburger-btn:active { background: var(--bg-badge); }
+
+    .hamburger-btn span {
+      display: block;
+      width: 21px;
+      height: 2px;
+      background: var(--text-primary);
+      border-radius: 2px;
+      transition: all var(--transition-base);
+      transform-origin: center;
+    }
+
+    .hamburger-btn.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .hamburger-btn.open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    .hamburger-btn.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Mobile theme toggle button (icon only) */
+    .mobile-theme-btn {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      border-radius: var(--radius-md);
+      color: var(--text-secondary);
+      font-size: 16px;
+      transition: background var(--transition-fast), color var(--transition-fast);
+    }
+    .mobile-theme-btn:active { background: var(--bg-badge); }
+
+    /* ========================================
+       SIDEBAR OVERLAY
+       ======================================== */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--bg-overlay);
+      z-index: 300;
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      transition: opacity var(--transition-base);
+    }
+
+    .sidebar-overlay.visible {
+      display: block;
+      animation: fadeOverlay 0.25s ease;
+    }
+
+    @keyframes fadeOverlay {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ========================================
+       TABLET: 641px – 1024px
+       Sidebar collapsed (icon only)
+       ======================================== */
+    @media (max-width: 1024px) {
+      .sidebar {
+        width: var(--sidebar-collapsed);
+      }
+
+      .sidebar .brand-text,
+      .sidebar .nav-text,
+      .sidebar .sidebar-credit {
+        display: none;
+      }
+
+      .sidebar-brand {
+        justify-content: center;
+        padding: 20px 8px;
+      }
+
+      .nav-item {
+        justify-content: center;
+        padding: 14px;
+      }
+
+      .nav-item.active::before {
+        display: none;
+      }
+
+      .nav-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+      }
+
+      .theme-toggle {
+        padding: 10px;
+        justify-content: center;
+      }
+
+      .theme-toggle-label span {
+        display: none;
+      }
+
+      .main-area {
+        margin-left: var(--sidebar-collapsed);
+      }
+
+      main {
+        padding: 20px;
+      }
+    }
+
+    /* ========================================
+       MOBILE: ≤ 768px
+       Full mobile drawer + bottom nav
+       ======================================== */
+    @media (max-width: 768px) {
+
+      /* Show mobile header, hide desktop top-bar elements */
+      .mobile-header { display: flex; }
+
+      /* Sidebar becomes slide-in drawer */
+      .sidebar {
+        width: 82vw;
+        max-width: 300px;
+        transform: translateX(-100%);
+        transition: transform var(--transition-base), box-shadow var(--transition-base),
+                    background var(--transition-slow), border-color var(--transition-slow);
+        z-index: 320;
+        top: 0;
+        /* Restore brand-text & nav-text inside drawer */
+      }
+
+      .sidebar.drawer-open {
+        transform: translateX(0);
+        box-shadow: 8px 0 32px rgba(0, 0, 0, 0.18);
+      }
+
+      /* Show text labels inside drawer on mobile */
+      .sidebar .brand-text,
+      .sidebar .nav-text,
+      .sidebar .sidebar-credit {
+        display: flex !important;
+      }
+
+      .sidebar .brand-text { flex-direction: column; }
+
+      .sidebar-brand {
+        justify-content: flex-start;
+        padding: 24px 20px 20px;
+      }
+
+      .nav-item {
+        justify-content: flex-start;
+        padding: 12px 14px;
+        min-height: 52px;
+      }
+
+      .nav-item.active::before {
+        display: block;
+      }
+
+      .nav-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+      }
+
+      .theme-toggle {
+        padding: 10px 14px;
+        justify-content: space-between;
+      }
+
+      .theme-toggle-label span { display: inline; }
+
+      /* Main area: no left margin, offset for mobile header */
+      .main-area {
+        margin-left: 0 !important;
+        padding-top: var(--header-height);
+      }
+
+      /* Desktop top-bar: hide it, we use mobile-header instead */
+      .top-bar {
+        display: none;
+      }
+
+      /* Single column grid */
+      .grid-layout {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      /* Forms: all single column */
+      .form-row,
+      .form-row-3 {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      /* Prevent iOS auto-zoom on input focus */
+      .form-input,
+      .form-select {
+        font-size: 16px !important;
+        min-height: 48px;
+      }
+
+      /* Main padding */
+      main {
+        padding: 16px;
+        padding-bottom: 24px;
+      }
+
+      /* Result meta: keep 2 columns on mobile */
+      .result-meta {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      /* Tax rows: ensure readable on small screen */
+      .tax-amount {
+        font-size: 13px;
+        max-width: 140px;
+        word-break: break-word;
+        text-align: right;
+      }
+
+      .tax-name { font-size: 12px; }
+      .tax-desc { font-size: 10px; }
+
+      /* Buttons: full width on mobile */
+      .btn-row {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .btn-row .btn {
+        width: 100%;
+        min-height: 48px;
+        font-size: 14px;
+      }
+
+      /* Result actions: wrap nicely */
+      .result-actions {
+        padding: 12px 16px;
+        gap: 8px;
+      }
+
+      .result-actions .btn {
+        flex: 1;
+        min-width: 0;
+        font-size: 12px;
+        padding: 8px 10px;
+        min-height: 44px;
+      }
+
+      /* Toast: center bottom on mobile */
+      .toast {
+        bottom: 16px;
+        right: 16px;
+        left: 16px;
+        justify-content: center;
+        font-size: 13px;
+      }
+
+      /* Card adjustments */
+      .card-header { padding: 12px 16px; }
+      .card-body   { padding: 16px; }
+      .result-summary { padding: 16px; gap: 10px; }
+
+      /* Konsultan panel */
+      .konsultan-tip { font-size: 11px; padding: 10px; }
+
+      /* History items: stack nicely */
+      .history-item {
+        gap: 4px;
+      }
+
+      /* Detail calc-steps: smaller mono */
+      .detail-panel .calc-steps {
+        font-size: 10px;
+        line-height: 1.8;
+        overflow-x: auto;
+      }
+
+      /* Tooltip: repositioned for mobile */
+      .tooltip::after {
+        width: 180px;
+        font-size: 10px;
+        left: 0;
+        transform: translateX(0) translateY(4px);
+      }
+      .tooltip:hover::after {
+        transform: translateX(0) translateY(0);
+      }
+
+      /* Page title in top bar (now shown in mobile-header via JS) */
+      .top-bar-title { font-size: 14px; }
+
+      /* Tabs: scrollable if overflow */
+      .tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .tab  { white-space: nowrap; padding: 12px 16px; }
+
+      /* Footer */
+      footer { padding: 12px 16px; }
+    }
+
+    /* ========================================
+       SMALL PHONE: ≤ 375px
+       Extra tweaks for compact screens
+       ======================================== */
+    @media (max-width: 375px) {
+      .sidebar {
+        width: 88vw;
+      }
+
+      main { padding: 12px; }
+
+      .card-header { padding: 10px 12px; }
+      .card-body   { padding: 12px; }
+
+      .tax-row { padding: 12px; }
+
+      .result-meta {
+        grid-template-columns: 1fr;
+      }
+
+      .tax-amount.total,
+      .tax-amount.purple,
+      .tax-amount.rose-total {
+        font-size: 14px;
+      }
+    }
+
+
+    /* ── Emoji brand icon: transparent bg, no coral shadow ── */
+    .brand-icon-emoji {
+      background: transparent !important;
+      box-shadow: none !important;
+      width: auto !important;
+      height: 36px !important;
+      border-radius: 0 !important;
+      padding: 0 !important;
+    }
+    .brand-icon-emoji:hover {
+      transform: scale(1.08);
+    }
+    /* ── Tentang nav item ── */
+    .nav-item-tentang .nav-icon {
+      background: var(--blue-soft);
+      color: var(--blue);
+    }
+    .nav-item-tentang:hover .nav-icon {
+      background: var(--blue-soft);
+      color: var(--blue);
+    }
+
+    /* ── Tentang full page ── */
+    .tentang-page {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      max-width: 1120px;
+    }
+    .tentang-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
+      align-items: center;
+      padding: 28px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+    .tentang-brand-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .tentang-page-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--coral-soft);
+      color: var(--coral);
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    .tentang-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--coral);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 4px;
+    }
+    .tentang-page-title {
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+    .tentang-lead {
+      max-width: 980px;
+      color: var(--text-secondary);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+    .tentang-lead + .tentang-lead {
+      margin-top: 10px;
+    }
+    .tentang-section {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: 24px;
+    }
+    .tentang-section-header {
+      margin-bottom: 18px;
+    }
+    .tentang-section-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .tentang-section-desc {
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    .tentang-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .tentang-feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px;
+      background: var(--bg-badge);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      min-height: 112px;
+    }
+    .tentang-feature-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .tentang-feature-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+    .tentang-feature-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+      line-height: 1.6;
+    }
+    .tentang-info-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 16px;
+    }
+    .tentang-info-box {
+      padding: 18px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-badge);
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+    .tentang-info-box strong {
+      display: block;
+      color: var(--text-primary);
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+    .tentang-license-box {
+      background: var(--sage-soft);
+      border-color: var(--sage-muted);
+    }
+    .tentang-support-box {
+      background: var(--blue-soft);
+      border-color: var(--blue-muted);
+    }
+    .tentang-link {
+      color: var(--coral);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .tentang-link:hover {
+      text-decoration: underline;
+    }
+    .tentang-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .tentang-action-link {
+      min-height: 40px;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-medium);
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all var(--transition-fast);
+    }
+    .tentang-action-link:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+    .tentang-disclaimer {
+      padding: 16px 18px;
+      background: var(--amber-soft);
+      border: 1px solid var(--amber-muted);
+      border-radius: var(--radius-md);
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    @media (max-width: 1024px) {
+      .tentang-info-grid {
+        grid-template-columns: 1fr;
+      }
+      .tentang-feature-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 820px) {
+      .tentang-hero {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 640px) {
+      .tentang-hero,
+      .tentang-section {
+        padding: 18px;
+      }
+      .tentang-page-title {
+        font-size: 26px;
+      }
+      .tentang-feature-grid {
+        grid-template-columns: 1fr;
+      }
+      .tentang-actions {
+        flex-direction: column;
+      }
+      .tentang-action-link {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-medium);
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--border-strong);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== MOBILE HEADER ===== -->
+  <header class="mobile-header" id="mobileHeader">
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Buka menu navigasi" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="mobile-header-brand">
+      <div class="brand-icon brand-icon-emoji" style="width:auto;height:auto;">
+        <img src="https://cdn.jsdelivr.net/gh/googlefonts/noto-emoji@main/png/128/emoji_u1f4d1.png" alt="📑" style="display:block;height:20px;width:auto;">
+      </div>
+      <div class="brand-title" style="font-size:17px;font-weight:800;letter-spacing:-0.5px;" id="mobileBrandTitle">Properttax ID</div>
+    </div>
+    <div class="mobile-header-actions">
+      <button class="mobile-theme-btn" id="mobileThemeBtn" aria-label="Toggle tema">
+        <span class="em" id="mobileThemeIcon" style="font-size:16px;">☀️</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== SIDEBAR OVERLAY ===== -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <div class="app-shell">
+
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon brand-icon-emoji">
+          <img src="https://cdn.jsdelivr.net/gh/googlefonts/noto-emoji@main/png/128/emoji_u1f4d1.png" alt="📑" style="display:block;height:36px;width:auto;">
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">Properttax ID</div>
+          <div class="brand-subtitle">Kalkulator Pajak Properti</div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-item active" data-module="jual-beli" onclick="switchModule('jual-beli')">
+          <div class="nav-icon"><span class="em" aria-label="jual beli" role="img">🤝</span></div>
+          <span class="nav-text">Jual Beli</span>
+        </div>
+        <div class="nav-item" data-module="hibah" onclick="switchModule('hibah')">
+          <div class="nav-icon"><span class="em" aria-label="hibah" role="img">🎁</span></div>
+          <span class="nav-text">Pajak Hibah</span>
+        </div>
+        <div class="nav-item" data-module="waris" onclick="switchModule('waris')">
+          <div class="nav-icon"><span class="em" aria-label="waris" role="img">📜</span></div>
+          <span class="nav-text">Pajak Waris</span>
+        </div>
+        <div class="nav-item nav-item-tentang" data-module="tentang" onclick="switchModule('tentang')">
+          <div class="nav-icon"><span class="em" aria-label="info" role="img">ℹ️</span></div>
+          <span class="nav-text">Tentang Aplikasi</span>
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="theme-toggle" onclick="toggleTheme()">
+          <div class="theme-toggle-label">
+            <span class="em" id="themeIcon" style="font-size:15px;">☀️</span>
+            <span id="themeLabel">Terang</span>
+          </div>
+        </div>
+        <div class="sidebar-credit">© ErladhiPratama</div>
+      </div>
+    </aside>
+
+    <div class="main-area">
+      <div class="top-bar">
+        <div class="top-bar-title" id="topBarTitle">
+          <span class="em" aria-label="jual beli" role="img">🤝</span>
+          Kalkulator Pajak Jual Beli
+        </div>
+      </div>
+
+      <div class="module-panel active" id="module-jual-beli">
+        <main>
+          <div class="grid-layout">
+            <div>
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title"><span class="em" aria-label="pengaturan" role="img">⚙️</span> Data Transaksi Jual Beli</div>
+                  <div class="toggle-row">
+                    <label class="toggle">
+                      <input type="checkbox" id="toggleFormat" onchange="toggleNumberFormat()">
+                      <div class="toggle-slider"></div>
+                    </label>
+                    <span>Rp.</span>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="form-grid">
+                    <div class="section-heading">Informasi Properti</div>
+                    <div class="form-group">
+                      <label class="form-label">Jenis Properti <span class="info-icon tooltip"
+                          data-tip="Jenis properti menentukan tarif PPh dan status PPN yang berlaku."><span class="em" aria-label="info" role="img">ℹ️</span></span></label>
+                      <select class="form-select" id="jenisProperti">
+                        <option value="subsidi">Rumah Subsidi (FLPP)</option>
+                        <option value="komersial" selected>Rumah Komersial</option>
+                        <option value="tanah">Tanah</option>
+                      </select>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label class="form-label">Status Penjual <span class="info-icon tooltip"
+                            data-tip="Developer (PKP) dikenai PPh 1% untuk subsidi. Orang Pribadi (OP) dikenai 2.5%."><span class="em" aria-label="info" role="img">ℹ️</span></span></label>
+                        <select class="form-select" id="statusPenjual">
+                          <option value="developer">Developer / PKP</option>
+                          <option value="op">Orang Pribadi (OP)</option>
+                          <option value="badan">Badan Usaha</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">Status Pembeli <span class="info-icon tooltip"
+                            data-tip="Status pembeli mempengaruhi threshold insentif PPN DTP."><span class="em" aria-label="info" role="img">ℹ️</span></span></label>
+                        <select class="form-select" id="statusPembeli">
+                          <option value="op">Orang Pribadi (OP)</option>
+                          <option value="badan">Badan Usaha</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Tanggal Transaksi <span class="info-icon tooltip"
+                          data-tip="PPN 12% berlaku mulai 1 Januari 2025. Sebelumnya 11%."><span class="em" aria-label="info" role="img">ℹ️</span></span></label>
+                      <input type="date" class="form-input" id="tanggalTransaksi">
+                    </div>
+                    <div class="section-divider"><span>Nilai Transaksi</span></div>
+                    <div class="form-group">
+                      <label class="form-label">Harga Jual / Transaksi <span class="info-icon tooltip"
+                          data-tip="Harga aktual transaksi yang disepakati antara penjual dan pembeli."><span class="em" aria-label="info" role="img">ℹ️</span></span></label>
+                      <div class="input-prefix"><span class="prefix-label">Rp</span><input type="text"
+                          class="form-input" id="hargaJual" placeholder="0" oninput="formatInputRp(this)"></div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label class="form-label">NJOP <span class="info-icon tooltip"
+                            data-tip="Nilai Jual Objek Pajak dari SPPT PBB. Default = Harga Jual jika kosong."><span class="em" aria-label="info" role="img">ℹ️</span></span> <span class="formula-badge">opsional</span></label>
+                        <div class="input-prefix"><span class="prefix-label">Rp</span><input type="text"
+                            class="form-input" id="njop" placeholder="= Harga Jual" oninput="formatInputRp(this)"></div>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">NPOPTKP <span class="info-icon tooltip"
+                            data-tip="Nilai Perolehan Objek Pajak Tidak Kena Pajak. Default Rp 80 juta, bervariasi per daerah."><span class="em" aria-label="info" role="img">ℹ️</span></span></label>
+                        <div class="input-prefix"><span class="prefix-label">Rp</span><input type="text"
+                            class="form-input" id="npoptkp" placeholder="80.000.000" oninput="formatInputRp(this)">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">NPOP (Override) <span class="info-icon tooltip"
+                          data-tip="Nilai Perolehan Objek Pajak. Otomatis = max(Harga Jual, NJOP). Isi jika ingin override manual."><span class="em" aria-label="info" role="img">ℹ️</span></span> <span class="formula-badge">max(Harga,
+                          NJOP)</span></label>
+                      <div class="input-prefix"><span class="prefix-label">Rp</span><input type="text"
+                          class="form-input" id="npop" placeholder="Auto-calculated" oninput="formatInputRp(this)">
+                      </div>
+                      <div class="form-hint">Kosongkan untuk perhitungan otomatis</div>
+                    </div>
+                    <div class="btn-row" style="margin-top:8px;">
+                      <button class="btn btn-primary" onclick="hitungPajak()"><span class="em" aria-label="kalkulator" role="img">🧮</span> Hitung
+                        Pajak</button>
+                      <button class="btn btn-outline" onclick="resetForm()"><span class="em" aria-label="reset" role="img">↩️</span>
+                        Reset</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:24px;">
+              <div class="card" id="resultCard">
+                <div class="card-header">
+                  <div class="card-title"><span class="em" aria-label="hasil" role="img">📊</span> Hasil Perhitungan</div>
+                  <div id="konsultanToggle" style="display:none;">
+                    <button class="btn btn-ghost" onclick="toggleKonsultan()"
+                      style="color:var(--amber);border-color:var(--amber-muted);"><span class="em" aria-label="tips" role="img">💡</span>
+                      Konsultan</button>
+                  </div>
+                </div>
+                <div id="emptyState" class="result-empty">
+                  <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="60" cy="108" rx="48" ry="6" fill="currentColor" fill-opacity="0.06"
+                      stroke="currentColor" stroke-opacity="0.15" stroke-width="2" />
+                    <rect x="24" y="58" width="72" height="48" rx="4" fill="currentColor" fill-opacity="0.03"
+                      stroke="currentColor" stroke-opacity="0.15" stroke-width="2" />
+                    <circle cx="36" cy="74" r="2.2" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="46" cy="74" r="2.2" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="56" cy="74" r="2.2" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="36" cy="84" r="2.2" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="46" cy="84" r="2.2" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="56" cy="84" r="2.2" fill="currentColor" fill-opacity="0.08" />
+                    <path d="M18 62 L60 22 L102 62" fill="#E8533A" fill-opacity="0.15" stroke="currentColor"
+                      stroke-opacity="0.15" stroke-width="2" stroke-linejoin="round" />
+                    <circle cx="50" cy="44" r="2" fill="currentColor" fill-opacity="0.1" />
+                    <circle cx="60" cy="38" r="2" fill="currentColor" fill-opacity="0.1" />
+                    <circle cx="70" cy="44" r="2" fill="currentColor" fill-opacity="0.1" />
+                    <circle cx="55" cy="52" r="2" fill="currentColor" fill-opacity="0.1" />
+                    <circle cx="65" cy="52" r="2" fill="currentColor" fill-opacity="0.1" />
+                    <rect x="74" y="38" width="12" height="22" rx="2" fill="#10B981" fill-opacity="0.15"
+                      stroke="currentColor" stroke-opacity="0.15" stroke-width="2" />
+                    <rect x="48" y="78" width="24" height="28" rx="3" fill="#F59E0B" fill-opacity="0.15"
+                      stroke="currentColor" stroke-opacity="0.15" stroke-width="2" />
+                    <circle cx="68" cy="93" r="2.5" fill="currentColor" fill-opacity="0.15" />
+                    <rect x="30" y="66" width="16" height="14" rx="2" fill="#3B82F6" fill-opacity="0.15"
+                      stroke="currentColor" stroke-opacity="0.15" stroke-width="2" />
+                    <line x1="38" y1="66" x2="38" y2="80" stroke="currentColor" stroke-opacity="0.15"
+                      stroke-width="1.5" />
+                    <line x1="30" y1="73" x2="46" y2="73" stroke="currentColor" stroke-opacity="0.15"
+                      stroke-width="1.5" />
+                    <rect x="74" y="66" width="16" height="14" rx="2" fill="#3B82F6" fill-opacity="0.15"
+                      stroke="currentColor" stroke-opacity="0.15" stroke-width="2" />
+                    <line x1="82" y1="66" x2="82" y2="80" stroke="currentColor" stroke-opacity="0.15"
+                      stroke-width="1.5" />
+                    <line x1="74" y1="73" x2="90" y2="73" stroke="currentColor" stroke-opacity="0.15"
+                      stroke-width="1.5" />
+                    <path d="M10 30 L12 24 L14 30 L20 32 L14 34 L12 40 L10 34 L4 32 Z" fill="#F59E0B" fill-opacity="0.2"
+                      stroke="currentColor" stroke-opacity="0.15" stroke-width="1.5" />
+                    <path d="M102 20 L103.5 16 L105 20 L109 21.5 L105 23 L103.5 27 L102 23 L98 21.5 Z" fill="#E8533A"
+                      fill-opacity="0.2" stroke="currentColor" stroke-opacity="0.15" stroke-width="1.5" />
+                  </svg>
+                  <div>
+                    <p style="font-weight:700;color:var(--text-primary);margin-bottom:6px;font-size:15px;">Belum ada
+                      perhitungan</p>
+                    <p style="color:var(--text-secondary);">Isi data transaksi di sebelah kiri<br>dan klik <strong
+                        style="color:var(--coral);">Hitung Pajak</strong></p>
+                  </div>
+                </div>
+                <div id="resultContent" style="display:none;" class="fade-in">
+                  <div class="result-summary">
+                    <div class="result-meta gold-meta" id="resultMeta"></div>
+                    <div>
+                      <div class="tax-row" onclick="toggleDetail('pphDetail')">
+                        <div class="tax-row-left">
+                          <div class="tax-icon pph"><span class="em" aria-label="pph penjual" role="img">📈</span></div>
+                          <div>
+                            <div class="tax-name">PPh Penjual</div>
+                            <div class="tax-desc">Pajak Penghasilan Final</div>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="tax-amount" id="pphDisplay">Rp 0</div>
+                          <div
+                            style="font-size:10px;color:var(--text-tertiary);text-align:right;font-family:'JetBrains Mono',monospace;"
+                            id="pphRate"></div>
+                        </div>
+                      </div>
+                      <div class="detail-panel" id="pphDetail"></div>
+                    </div>
+                    <div>
+                      <div class="tax-row" onclick="toggleDetail('ppnDetail')">
+                        <div class="tax-row-left">
+                          <div class="tax-icon ppn"><span class="em" aria-label="ppn" role="img">💹</span></div>
+                          <div>
+                            <div class="tax-name">PPN Pembeli</div>
+                            <div class="tax-desc">Pajak Pertambahan Nilai</div>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="tax-amount" id="ppnDisplay">Rp 0</div>
+                          <div style="font-size:10px;text-align:right;" id="ppnBadge"></div>
+                        </div>
+                      </div>
+                      <div class="detail-panel" id="ppnDetail"></div>
+                    </div>
+                    <div>
+                      <div class="tax-row" onclick="toggleDetail('bphtbDetail')">
+                        <div class="tax-row-left">
+                          <div class="tax-icon bphtb"><span class="em" aria-label="bphtb" role="img">📋</span></div>
+                          <div>
+                            <div class="tax-name">BPHTB Pembeli</div>
+                            <div class="tax-desc">Bea Perolehan Hak atas Tanah &amp; Bangunan</div>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="tax-amount" id="bphtbDisplay">Rp 0</div>
+                          <div
+                            style="font-size:10px;color:var(--text-tertiary);text-align:right;font-family:'JetBrains Mono',monospace;"
+                            id="bphtbRate"></div>
+                        </div>
+                      </div>
+                      <div class="detail-panel" id="bphtbDetail"></div>
+                    </div>
+                    <div class="tax-row total-row">
+                      <div class="tax-row-left">
+                        <div class="tax-icon total"><span class="em" aria-label="total" role="img">🔢</span></div>
+                        <div>
+                          <div class="tax-name">Total Beban Pajak</div>
+                          <div class="tax-desc">PPh + PPN + BPHTB</div>
+                        </div>
+                      </div>
+                      <div class="tax-amount total" id="totalDisplay">Rp 0</div>
+                    </div>
+                    <div class="konsultan-panel" id="konsultanPanel">
+                      <div class="konsultan-title"><span class="em" aria-label="tips" role="img">💡</span> Saran Konsultan Pajak</div>
+                      <div id="konsultanTips"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="result-actions" id="resultActions" style="display:none;">
+                  <button class="btn btn-outline" onclick="salinHasil()" style="flex:1;"><span class="em" aria-label="salin" role="img">📋</span>
+                    Salin Hasil</button>
+                  <button class="btn btn-outline" onclick="unduhTeks()" style="flex:1;"><span class="em" aria-label="unduh" role="img">⬇️</span>
+                    Unduh Teks</button>
+                  <button class="btn btn-ghost" onclick="hitungPajak()"><span class="em" aria-label="hitung ulang" role="img">🔄</span></button>
+                </div>
+              </div>
+              <div class="card">
+                <div class="tabs">
+                  <div class="tab active" data-tab="history"><span class="em" aria-label="riwayat" role="img">🕓</span> Riwayat</div>
+                  <div class="tab" data-tab="info"><span class="em" aria-label="info" role="img">ℹ️</span> Info
+                    Tarif</div>
+                </div>
+                <div class="tab-content active" id="tab-history">
+                  <div style="padding:16px;" id="historyContainer">
+                    <div class="history-empty">Belum ada riwayat perhitungan</div>
+                  </div>
+                </div>
+                <div class="tab-content" id="tab-info">
+                  <div style="padding:16px;">
+                    <div class="info-panel" style="background:var(--coral-soft);border-color:var(--coral-muted);">
+                      <div class="info-panel-title" style="color:var(--coral);"><span class="em" aria-label="pph penjual" role="img">📈</span>PPh Penjual (Final)</div>
+                      <div class="info-panel-body">Rumah Subsidi (Developer) &rarr; <strong>1%</strong><br>Rumah Subsidi
+                        (OP/Badan) &rarr; <strong>2.5%</strong><br>Komersial &amp; Tanah &rarr; <strong>2.5%</strong>
+                      </div>
+                      <div class="info-panel-ref">PP 34/2016 jo. PP 120/2015</div>
+                    </div>
+                    <div class="info-panel" style="background:var(--blue-soft);border-color:var(--blue-muted);">
+                      <div class="info-panel-title" style="color:var(--blue);"><span class="em" aria-label="ppn" role="img">💹</span>PPN Pembeli</div>
+                      <div class="info-panel-body">Tarif 2025 &rarr; <strong>12%</strong> (PKP/Developer)<br>Rumah
+                        Subsidi &rarr; <strong>0%</strong> (Bebas PPN)<br>DTP &le; Rp 2 M &rarr; <strong>Insentif
+                          100%</strong></div>
+                      <div class="info-panel-ref">UU 7/2021 (HPP) &amp; PMK 7/2025</div>
+                    </div>
+                    <div class="info-panel" style="background:var(--sage-soft);border-color:var(--sage-muted);">
+                      <div class="info-panel-title" style="color:var(--sage);"><span class="em" aria-label="bphtb" role="img">📋</span>BPHTB Pembeli</div>
+                      <div class="info-panel-body">Tarif &rarr; <strong>5%</strong> &times; (NPOP &ndash;
+                        NPOPTKP)<br>NPOPTKP default &rarr; <strong>Rp 80.000.000</strong><br>Jika negatif &rarr;
+                        <strong>Rp 0</strong>
+                      </div>
+                      <div class="info-panel-ref">UU 28/2009 &amp; Perda setempat</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <div class="module-panel" id="module-hibah">
+        <main>
+          <div class="grid-layout">
+            <div>
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title purple"><span class="em" aria-label="hibah" role="img">🎁</span> Data Transaksi Hibah</div>
+                  <div class="toggle-row">
+                    <label class="toggle"><input type="checkbox" id="toggleFormatHibah"
+                        onchange="toggleNumberFormatHibah()">
+                      <div class="toggle-slider"></div>
+                    </label>
+                    <span>Rp.</span>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="form-grid">
+                    <div class="section-heading">Informasi Pihak</div>
+                    <div class="form-group">
+                      <label class="form-label">Hubungan Pemberi &amp; Penerima <span class="info-icon tooltip"
+                          data-tip="Hubungan keluarga sedarah garis lurus satu derajat (orang tua-anak) DIKECUALIKAN dari PPh. Selain itu dikenai PPh 2.5%."><span class="em" aria-label="info" role="img">ℹ️</span></span></label>
+                      <select class="form-select" id="hubunganHibah" onchange="onHubunganChange()">
+                        <option value="keluarga_lurus">Orang tua ke Anak (/ sebaliknya) &mdash; Garis Lurus 1 Derajat
+                        </option>
+                        <option value="keluarga_lain">Keluarga lainnya (kakak-adik, paman, dll)</option>
+                        <option value="bukan_keluarga">Bukan Keluarga / Pihak Ketiga</option>
+                        <option value="badan">Dari/ke Badan Usaha</option>
+                      </select>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label class="form-label">Status Pemberi <span class="info-icon tooltip"
+                            data-tip="Jika pemberi adalah badan usaha, hibah properti dikenai PPh 2.5% dari NJOP/nilai pasar."><span class="em" aria-label="info" role="img">ℹ️</span></span></label>
+                        <select class="form-select" id="statusPemberiHibah">
+                          <option value="op">Orang Pribadi (OP)</option>
+                          <option value="badan">Badan Usaha</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">Jenis Properti <span class="info-icon tooltip"
+                            data-tip="Jenis properti menentukan nilai acuan pajak."><span class="em" aria-label="info" role="img">ℹ️</span></span></label>
+                        <select class="form-select" id="jenisPropertiHibah">
+                          <option value="rumah">Rumah / Bangunan</option>
+                          <option value="tanah">Tanah</option>
+                          <option value="tanah_bangunan">Tanah &amp; Bangunan</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="section-divider"><span>Nilai Properti</span></div>
+                    <div class="form-group">
+                      <label class="form-label">Nilai Properti / NJOP <span class="info-icon tooltip"
+                          data-tip="Gunakan NJOP (Nilai Jual Objek Pajak) dari SPPT PBB, atau nilai pasar wajar jika lebih tinggi."><span class="em" aria-label="info" role="img">ℹ️</span></span></label>
+                      <div class="input-prefix"><span class="prefix-label">Rp</span><input type="text"
+                          class="form-input" id="nilaiHibah" placeholder="0" oninput="formatInputRp(this)"></div>
+                      <div class="form-hint">Gunakan NJOP atau nilai pasar wajar (mana yang lebih tinggi)</div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label class="form-label">NPOPTKP Hibah <span class="info-icon tooltip"
+                            data-tip="Default Rp 80 juta untuk semua jenis hibah. Nilai dapat disesuaikan dengan Perda setempat."><span class="em" aria-label="info" role="img">ℹ️</span></span></label>
+                        <div class="input-prefix"><span class="prefix-label">Rp</span><input type="text"
+                            class="form-input" id="npoptkpHibah" placeholder="80.000.000"
+                            oninput="formatInputRp(this)"></div>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">NJOP Override <span class="info-icon tooltip"
+                            data-tip="Opsional. Isi jika NJOP berbeda dari nilai properti di atas."><span class="em" aria-label="info" role="img">ℹ️</span></span> <span class="formula-badge">opsional</span></label>
+                        <div class="input-prefix"><span class="prefix-label">Rp</span><input type="text"
+                            class="form-input" id="njopHibah" placeholder="= Nilai Properti"
+                            oninput="formatInputRp(this)"></div>
+                      </div>
+                    </div>
+                    <div class="btn-row" style="margin-top:8px;">
+                      <button class="btn btn-primary purple" onclick="hitungHibah()"><span class="em" aria-label="kalkulator" role="img">🧮</span>
+                        Hitung Pajak Hibah</button>
+                      <button class="btn btn-outline" onclick="resetHibah()"><span class="em" aria-label="reset" role="img">↩️</span>
+                        Reset</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card" style="margin-top:20px;">
+                <div class="card-header">
+                  <div class="card-title purple">📖 Dasar Hukum Pajak Hibah</div>
+                </div>
+                <div style="padding:16px;display:flex;flex-direction:column;gap:10px;">
+                  <div class="info-panel" style="background:var(--purple-soft);border-color:var(--purple-muted);">
+                    <div class="info-panel-title" style="color:var(--purple);"><span class="em" aria-label="pengguna" role="img">👥</span>Hibah Keluarga Garis Lurus 1 Derajat</div>
+                    <div class="info-panel-body"><strong>PPh: DIKECUALIKAN (0%)</strong><br>Orang tua &rarr; anak
+                      kandung (atau sebaliknya) tidak dikenai PPh penghasilan atas hibah.<br>BPHTB tetap dikenakan
+                      kepada penerima.</div>
+                    <div class="info-panel-ref">UU PPh Psl 4(3)a &bull; PP 55/2022 &bull; PMK 90/2020</div>
+                  </div>
+                  <div class="info-panel" style="background:var(--amber-soft);border-color:var(--amber-muted);">
+                    <div class="info-panel-title" style="color:var(--amber);"><span class="em" aria-label="hibah non-keluarga" role="img">⚠️</span> Hibah Non-Keluarga / Badan</div>
+                    <div class="info-panel-body"><strong>PPh Final: 2.5%</strong> dari NJOP atau nilai pasar (mana lebih
+                      tinggi)<br>Dikenakan kepada pemberi hibah (bukan penerima).<br>BPHTB tetap dikenakan kepada
+                      penerima.</div>
+                    <div class="info-panel-ref">PP 34/2016 &bull; PP 55/2022</div>
+                  </div>
+                  <div class="info-panel" style="background:var(--sage-soft);border-color:var(--sage-muted);">
+                    <div class="info-panel-title" style="color:var(--sage);"><span class="em" aria-label="bphtb" role="img">📋</span>BPHTB atas Hibah</div>
+                    <div class="info-panel-body">Tarif: <strong>5%</strong> &times; (NPOP &ndash; NPOPTKP)<br>NPOPTKP
+                      hibah (semua jenis): <strong>Rp 80 juta</strong><br>(nilai default dapat berbeda per Perda)</div>
+                    <div class="info-panel-ref">UU 28/2009 Psl 87 &bull; Perda setempat</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:24px;">
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title purple"><span class="em" aria-label="hasil" role="img">📊</span> Hasil Perhitungan Pajak Hibah</div>
+                  <div id="hibahKonsultanToggle" style="display:none;">
+                    <button class="btn btn-ghost" onclick="toggleHibahKonsultan()"
+                      style="color:var(--purple);border-color:var(--purple-muted);"><span class="em" aria-label="tips" role="img">💡</span>
+                      Saran</button>
+                  </div>
+                </div>
+                <div id="hibahEmptyState" class="result-empty">
+                  <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="22" y="54" width="76" height="52" rx="4" fill="currentColor" fill-opacity="0.03"
+                      stroke="currentColor" stroke-opacity="0.15" stroke-width="2" />
+                    <circle cx="36" cy="70" r="2" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="46" cy="70" r="2" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="56" cy="70" r="2" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="36" cy="80" r="2" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="46" cy="80" r="2" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="56" cy="80" r="2" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="36" cy="90" r="2" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="46" cy="90" r="2" fill="currentColor" fill-opacity="0.08" />
+                    <rect x="18" y="42" width="84" height="16" rx="3" fill="#8B5CF6" fill-opacity="0.2"
+                      stroke="currentColor" stroke-opacity="0.15" stroke-width="2" />
+                    <circle cx="34" cy="50" r="2" fill="currentColor" fill-opacity="0.1" />
+                    <circle cx="44" cy="50" r="2" fill="currentColor" fill-opacity="0.1" />
+                    <circle cx="54" cy="50" r="2" fill="currentColor" fill-opacity="0.1" />
+                    <circle cx="64" cy="50" r="2" fill="currentColor" fill-opacity="0.1" />
+                    <circle cx="74" cy="50" r="2" fill="currentColor" fill-opacity="0.1" />
+                    <circle cx="84" cy="50" r="2" fill="currentColor" fill-opacity="0.1" />
+                    <rect x="55" y="42" width="10" height="64" fill="#F59E0B" fill-opacity="0.15" stroke="currentColor"
+                      stroke-opacity="0.15" stroke-width="1.5" />
+                    <rect x="22" y="52" width="76" height="10" fill="#F59E0B" fill-opacity="0.15" stroke="currentColor"
+                      stroke-opacity="0.15" stroke-width="1.5" />
+                    <path d="M50 42 C40 30 28 30 32 42 C36 54 50 42 60 42 C70 42 84 54 88 42 C92 30 80 30 70 42"
+                      fill="#F59E0B" fill-opacity="0.15" stroke="currentColor" stroke-opacity="0.15" stroke-width="2"
+                      stroke-linejoin="round" />
+                    <path d="M12 26 L14 20 L16 26 L22 28 L16 30 L14 36 L12 30 L6 28 Z" fill="#8B5CF6" fill-opacity="0.2"
+                      stroke="currentColor" stroke-opacity="0.15" stroke-width="1.5" />
+                    <path d="M102 18 L103.5 14 L105 18 L109 19.5 L105 21 L103.5 25 L102 21 L100 17.5 Z" fill="#F59E0B"
+                      fill-opacity="0.2" stroke="currentColor" stroke-opacity="0.15" stroke-width="1.5" />
+                  </svg>
+                  <div>
+                    <p style="font-weight:700;color:var(--text-primary);margin-bottom:6px;font-size:15px;">Belum ada
+                      perhitungan</p>
+                    <p style="color:var(--text-secondary);">Isi data hibah di sebelah kiri<br>dan klik <strong
+                        style="color:var(--purple);">Hitung Pajak Hibah</strong></p>
+                  </div>
+                </div>
+                <div id="hibahResultContent" style="display:none;" class="fade-in">
+                  <div class="result-summary">
+                    <div class="result-meta purple-meta" id="hibahResultMeta"></div>
+                    <div>
+                      <div class="tax-row" onclick="toggleDetail('hibahPphDetail')">
+                        <div class="tax-row-left">
+                          <div class="tax-icon hibah"><span class="em" aria-label="pph penjual" role="img">📈</span></div>
+                          <div>
+                            <div class="tax-name">PPh Pemberi Hibah</div>
+                            <div class="tax-desc">Pajak Penghasilan atas Hibah Properti</div>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="tax-amount" id="hibahPphDisplay">Rp 0</div>
+                          <div
+                            style="font-size:10px;color:var(--text-tertiary);text-align:right;font-family:'JetBrains Mono',monospace;"
+                            id="hibahPphRate"></div>
+                        </div>
+                      </div>
+                      <div class="detail-panel" id="hibahPphDetail"></div>
+                    </div>
+                    <div>
+                      <div class="tax-row" onclick="toggleDetail('hibahBphtbDetail')">
+                        <div class="tax-row-left">
+                          <div class="tax-icon bphtb"><span class="em" aria-label="bphtb" role="img">📋</span></div>
+                          <div>
+                            <div class="tax-name">BPHTB Penerima Hibah</div>
+                            <div class="tax-desc">Bea Perolehan Hak atas Tanah &amp; Bangunan</div>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="tax-amount" id="hibahBphtbDisplay">Rp 0</div>
+                          <div
+                            style="font-size:10px;color:var(--text-tertiary);text-align:right;font-family:'JetBrains Mono',monospace;">
+                            Tarif 5%</div>
+                        </div>
+                      </div>
+                      <div class="detail-panel" id="hibahBphtbDetail"></div>
+                    </div>
+                    <div class="tax-row total-row purple-total">
+                      <div class="tax-row-left">
+                        <div class="tax-icon hibah"><span class="em" aria-label="total" role="img">🔢</span></div>
+                        <div>
+                          <div class="tax-name">Total Beban Pajak Hibah</div>
+                          <div class="tax-desc">PPh Pemberi + BPHTB Penerima</div>
+                        </div>
+                      </div>
+                      <div class="tax-amount purple" id="hibahTotalDisplay">Rp 0</div>
+                    </div>
+                    <div class="konsultan-panel" id="hibahKonsultanPanel"
+                      style="background:var(--purple-soft);border-color:var(--purple-muted);">
+                      <div class="konsultan-title" style="color:var(--purple);"><span class="em" aria-label="tips" role="img">💡</span> Saran
+                        Perencanaan Pajak</div>
+                      <div id="hibahKonsultanTips"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="result-actions" id="hibahResultActions" style="display:none;">
+                  <button class="btn btn-outline" onclick="salinHasilHibah()" style="flex:1;"><span class="em" aria-label="salin" role="img">📋</span>
+                    Salin Hasil</button>
+                  <button class="btn btn-outline" onclick="unduhTeksHibah()" style="flex:1;"><span class="em" aria-label="unduh" role="img">⬇️</span> Unduh Teks</button>
+                  <button class="btn btn-ghost" onclick="hitungHibah()"><span class="em" aria-label="hitung ulang" role="img">🔄</span></button>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title purple"><span class="em" aria-label="riwayat" role="img">🕓</span> Riwayat Perhitungan Hibah</div>
+                </div>
+                <div style="padding:16px;" id="hibahHistoryContainer">
+                  <div class="history-empty">Belum ada riwayat perhitungan hibah</div>
+                </div>
+              </div>
+              <div class="disclaimer-box">
+                <strong>Catatan Penting:</strong> Kalkulator ini memberikan estimasi berdasarkan regulasi umum. Tarif
+                NPOPTKP hibah dapat berbeda sesuai Peraturan Daerah masing-masing kabupaten/kota. Konsultasikan dengan
+                Konsultan Pajak atau PPAT setempat untuk kepastian hukum.
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <div class="module-panel" id="module-waris">
+        <main>
+          <div class="grid-layout">
+            <div>
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title rose"><span class="em" aria-label="waris" role="img">📜</span> Data Warisan Properti</div>
+                  <div class="toggle-row">
+                    <label class="toggle"><input type="checkbox" id="toggleFormatWaris"
+                        onchange="toggleNumberFormatWaris()">
+                      <div class="toggle-slider"></div>
+                    </label>
+                    <span>Rp.</span>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label class="form-label">Jenis Properti Warisan <span class="info-icon tooltip"
+                          data-tip="Jenis properti yang diwariskan."><span class="em" aria-label="info" role="img">ℹ️</span></span></label>
+                      <select class="form-select" id="jenisPropertiWaris">
+                        <option value="rumah">Rumah / Bangunan</option>
+                        <option value="tanah">Tanah</option>
+                        <option value="tanah_bangunan">Tanah &amp; Bangunan</option>
+                      </select>
+                    </div>
+                    <div class="section-divider"><span>Nilai Warisan</span></div>
+                    <div class="form-group">
+                      <label class="form-label">Nilai Properti / NJOP Total <span class="info-icon tooltip"
+                          data-tip="Total nilai seluruh properti yang diwariskan berdasarkan NJOP atau nilai pasar."><span class="em" aria-label="info" role="img">ℹ️</span></span></label>
+                      <div class="input-prefix"><span class="prefix-label">Rp</span><input type="text"
+                          class="form-input" id="nilaiWaris" placeholder="0" oninput="formatInputRp(this)"></div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">NPOPTKP Waris <span class="info-icon tooltip"
+                          data-tip="Masukkan NPOPTKP yang berlaku di daerah setempat. Nilai default aplikasi Rp 300 juta dan dapat diubah sesuai kebijakan daerah."><span class="em" aria-label="info" role="img">ℹ️</span></span></label>
+                      <div class="input-prefix"><span class="prefix-label">Rp</span><input type="text"
+                          class="form-input" id="npoptkpWaris" placeholder="300.000.000" oninput="formatInputRp(this)">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Estimasi Biaya Administrasi <span class="info-icon tooltip"
+                          data-tip="Opsional. Biaya akta notaris, sertifikasi BPN, dan lainnya (estimasi)."><span class="em" aria-label="info" role="img">ℹ️</span></span> <span class="formula-badge">opsional</span></label>
+                      <div class="input-prefix"><span class="prefix-label">Rp</span><input type="text"
+                          class="form-input" id="biayaAdminWaris" placeholder="0" oninput="formatInputRp(this)"></div>
+                      <div class="form-hint">Biaya akta ahli waris, balik nama, PNBP BPN, dll.</div>
+                    </div>
+                    <div class="btn-row" style="margin-top:8px;">
+                      <button class="btn btn-primary rose" onclick="hitungWaris()"><span class="em" aria-label="kalkulator" role="img">🧮</span>
+                        Hitung Pajak Waris</button>
+                      <button class="btn btn-outline" onclick="resetWaris()"><span class="em" aria-label="reset" role="img">↩️</span>
+                        Reset</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card" style="margin-top:20px;">
+                <div class="card-header">
+                  <div class="card-title rose">📖 Dasar Hukum Pajak Waris</div>
+                </div>
+                <div style="padding:16px;display:flex;flex-direction:column;gap:10px;">
+                  <div class="info-panel" style="background:var(--sage-soft);border-color:var(--sage-muted);">
+                    <div class="info-panel-title" style="color:var(--sage);"><span class="em" aria-label="ok" role="img">✅</span>PPh atas Warisan</div>
+                    <div class="info-panel-body"><strong>Warisan BUKAN objek PPh</strong> &mdash; ahli waris tidak
+                      dikenai PPh atas nilai properti yang diterima. Berlaku untuk semua ahli waris.</div>
+                    <div class="info-panel-ref">UU PPh Psl 4(3)b &bull; PP 55/2022 &bull; PMK 90/2020</div>
+                  </div>
+                  <div class="info-panel" style="background:var(--rose-soft);border-color:var(--rose-muted);">
+                    <div class="info-panel-title" style="color:var(--rose);"><span class="em" aria-label="bphtb" role="img">📋</span>BPHTB atas Waris</div>
+                    <div class="info-panel-body">Tarif: <strong>5%</strong> &times; (NPOP + NPOPTKP)<br>NPOPTKP waris
+                      default aplikasi: <strong>Rp 300 juta</strong><br>Nilai tersebut dapat diubah mengikuti Perda
+                      atau kebijakan daerah setempat.
+                    </div>
+                    <div class="info-panel-ref">UU 28/2009 Psl 85&ndash;87 &bull; Perda setempat</div>
+                  </div>
+                  <div class="info-panel" style="background:var(--amber-soft);border-color:var(--amber-muted);">
+                    <div class="info-panel-title" style="color:var(--amber);"><span class="em" aria-label="nilai" role="img">💰</span>Biaya Administrasi Lainnya</div>
+                    <div class="info-panel-body">&bull; Akta keterangan ahli waris (notaris)<br>&bull; Balik nama
+                      sertifikat (PNBP BPN)<br>&bull; Pajak PBB tahun berjalan jika belum lunas<br>&bull; Biaya PPAT
+                      untuk proses peralihan</div>
+                    <div class="info-panel-ref">PP 128/2015 (PNBP) &bull; Permenkeu terkait</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:24px;">
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title rose"><span class="em" aria-label="hasil" role="img">📊</span> Hasil Perhitungan Pajak Waris</div>
+                  <div id="warisKonsultanToggle" style="display:none;">
+                    <button class="btn btn-ghost" onclick="toggleWarisKonsultan()"
+                      style="color:var(--rose);border-color:var(--rose-muted);"><span class="em" aria-label="tips" role="img">💡</span>
+                      Saran</button>
+                  </div>
+                </div>
+                <div id="warisEmptyState" class="result-empty">
+                  <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="28" y="24" width="64" height="78" rx="6" fill="currentColor" fill-opacity="0.03"
+                      stroke="currentColor" stroke-opacity="0.15" stroke-width="2" />
+                    <circle cx="42" cy="42" r="1.8" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="52" cy="42" r="1.8" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="62" cy="42" r="1.8" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="72" cy="42" r="1.8" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="42" cy="54" r="1.8" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="52" cy="54" r="1.8" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="62" cy="54" r="1.8" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="72" cy="54" r="1.8" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="42" cy="66" r="1.8" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="52" cy="66" r="1.8" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="62" cy="66" r="1.8" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="42" cy="78" r="1.8" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="52" cy="78" r="1.8" fill="currentColor" fill-opacity="0.08" />
+                    <rect x="18" y="18" width="84" height="14" rx="7" fill="#E11D7A" fill-opacity="0.2"
+                      stroke="currentColor" stroke-opacity="0.15" stroke-width="2" />
+                    <rect x="18" y="88" width="84" height="14" rx="7" fill="#E11D7A" fill-opacity="0.2"
+                      stroke="currentColor" stroke-opacity="0.15" stroke-width="2" />
+                    <line x1="38" y1="36" x2="82" y2="36" stroke="currentColor" stroke-opacity="0.15" stroke-width="2"
+                      stroke-linecap="round" />
+                    <line x1="38" y1="46" x2="78" y2="46" stroke="currentColor" stroke-opacity="0.15" stroke-width="2"
+                      stroke-linecap="round" />
+                    <line x1="38" y1="56" x2="72" y2="56" stroke="currentColor" stroke-opacity="0.15" stroke-width="2"
+                      stroke-linecap="round" />
+                    <line x1="38" y1="66" x2="68" y2="66" stroke="currentColor" stroke-opacity="0.15" stroke-width="2"
+                      stroke-linecap="round" />
+                    <circle cx="60" cy="80" r="11" fill="#F59E0B" fill-opacity="0.15" stroke="currentColor"
+                      stroke-opacity="0.15" stroke-width="2" />
+                    <circle cx="60" cy="80" r="2" fill="currentColor" fill-opacity="0.1" />
+                    <circle cx="53" cy="76" r="1.5" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="67" cy="76" r="1.5" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="53" cy="84" r="1.5" fill="currentColor" fill-opacity="0.08" />
+                    <circle cx="67" cy="84" r="1.5" fill="currentColor" fill-opacity="0.08" />
+                    <path d="M10 28 L12 22 L14 28 L20 30 L14 32 L12 38 L10 32 L4 30 Z" fill="#E11D7A" fill-opacity="0.2"
+                      stroke="currentColor" stroke-opacity="0.15" stroke-width="1.5" />
+                    <path d="M104 16 L105.5 12 L107 16 L111 17.5 L107 19 L105.5 23 L104 19 L100 17.5 Z" fill="#F59E0B"
+                      fill-opacity="0.2" stroke="currentColor" stroke-opacity="0.15" stroke-width="1.5" />
+                  </svg>
+                  <div>
+                    <p style="font-weight:700;color:var(--text-primary);margin-bottom:6px;font-size:15px;">Belum ada
+                      perhitungan</p>
+                    <p style="color:var(--text-secondary);">Isi data warisan di sebelah kiri<br>dan klik <strong
+                        style="color:var(--rose);">Hitung Pajak Waris</strong></p>
+                  </div>
+                </div>
+                <div id="warisResultContent" style="display:none;" class="fade-in">
+                  <div class="result-summary">
+                    <div class="result-meta rose-meta" id="warisResultMeta"></div>
+                    <div>
+                      <div class="tax-row" onclick="toggleDetail('warisPphDetail')">
+                        <div class="tax-row-left">
+                          <div class="tax-icon bebas"><span class="em" aria-label="bebas pajak" role="img">🛡️</span></div>
+                          <div>
+                            <div class="tax-name">PPh Ahli Waris</div>
+                            <div class="tax-desc">Pajak Penghasilan atas Warisan</div>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="tax-amount zero" id="warisPphDisplay">Rp 0</div>
+                          <div style="font-size:10px;text-align:right;" id="warisPphBadge"></div>
+                        </div>
+                      </div>
+                      <div class="detail-panel" id="warisPphDetail"></div>
+                    </div>
+                    <div>
+                      <div class="tax-row" onclick="toggleDetail('warisBphtbDetail')">
+                        <div class="tax-row-left">
+                          <div class="tax-icon waris"><span class="em" aria-label="bphtb" role="img">📋</span></div>
+                          <div>
+                            <div class="tax-name">BPHTB Waris</div>
+                            <div class="tax-desc">Bea Perolehan Hak atas Tanah &amp; Bangunan</div>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="tax-amount" id="warisBphtbPerDisplay">Rp 0</div>
+                          <div
+                            style="font-size:10px;color:var(--text-tertiary);text-align:right;font-family:'JetBrains Mono',monospace;">
+                            Tarif 5%</div>
+                        </div>
+                      </div>
+                      <div class="detail-panel" id="warisBphtbDetail"></div>
+                    </div>
+                    <div>
+                      <div class="tax-row" onclick="toggleDetail('warisBphtbTotalDetail')">
+                        <div class="tax-row-left">
+                          <div class="tax-icon waris"><span class="em" aria-label="pengguna" role="img">👥</span></div>
+                          <div>
+                            <div class="tax-name">Dasar Perhitungan BPHTB</div>
+                            <div class="tax-desc" id="warisJumlahLabel">NPOP + NPOPTKP</div>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="tax-amount" id="warisBphtbTotalDisplay">Rp 0</div>
+                        </div>
+                      </div>
+                      <div class="detail-panel" id="warisBphtbTotalDetail"></div>
+                    </div>
+                    <div id="warisBiayaRow" style="display:none;">
+                      <div class="tax-row" onclick="toggleDetail('warisBiayaDetail')">
+                        <div class="tax-row-left">
+                          <div class="tax-icon ppn">🧾</div>
+                          <div>
+                            <div class="tax-name">Biaya Administrasi</div>
+                            <div class="tax-desc">Estimasi biaya notaris, BPN, dll.</div>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="tax-amount" id="warisBiayaDisplay">Rp 0</div>
+                        </div>
+                      </div>
+                      <div class="detail-panel" id="warisBiayaDetail"></div>
+                    </div>
+                    <div class="tax-row total-row rose-total-row">
+                      <div class="tax-row-left">
+                        <div class="tax-icon waris"><span class="em" aria-label="total" role="img">🔢</span></div>
+                        <div>
+                          <div class="tax-name">Total Perkiraan Biaya Waris</div>
+                          <div class="tax-desc">PPh + BPHTB + Administrasi</div>
+                        </div>
+                      </div>
+                      <div class="tax-amount rose-total" id="warisTotalDisplay">Rp 0</div>
+                    </div>
+                    <div class="konsultan-panel" id="warisKonsultanPanel"
+                      style="background:var(--rose-soft);border-color:var(--rose-muted);">
+                      <div class="konsultan-title" style="color:var(--rose);"><span class="em" aria-label="tips" role="img">💡</span> Saran
+                        Perencanaan Waris</div>
+                      <div id="warisKonsultanTips"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="result-actions" id="warisResultActions" style="display:none;">
+                  <button class="btn btn-outline" onclick="salinHasilWaris()" style="flex:1;"><span class="em" aria-label="salin" role="img">📋</span>
+                    Salin Hasil</button>
+                  <button class="btn btn-outline" onclick="unduhTeksWaris()" style="flex:1;"><span class="em" aria-label="unduh" role="img">⬇️</span> Unduh Teks</button>
+                  <button class="btn btn-ghost" onclick="hitungWaris()"><span class="em" aria-label="hitung ulang" role="img">🔄</span></button>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title rose"><span class="em" aria-label="riwayat" role="img">🕓</span> Riwayat Perhitungan Waris</div>
+                </div>
+                <div style="padding:16px;" id="warisHistoryContainer">
+                  <div class="history-empty">Belum ada riwayat perhitungan waris</div>
+                </div>
+              </div>
+              <div class="disclaimer-box">
+                <strong>Catatan Penting:</strong> Warisan <strong>BEBAS PPh</strong> berdasarkan UU PPh Psl 4(3)b. Namun
+                BPHTB tetap berlaku. NPOPTKP pada kalkulator ini menggunakan default aplikasi Rp 300 juta dan dapat
+                diubah sesuai kebijakan masing-masing daerah. Pastikan cek Perda setempat atau konsultasikan dengan
+                PPAT/Notaris.
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <div class="module-panel" id="module-tentang">
+        <main class="tentang-page" aria-labelledby="tentangPageTitle">
+          <section class="tentang-hero">
+            <div>
+              <div class="tentang-brand-row">
+                <div class="tentang-page-icon" aria-hidden="true">
+                  <span class="em" role="img" aria-label="pajak properti">🏠</span>
+                </div>
+                <div>
+                  <div class="tentang-eyebrow">Tentang Aplikasi</div>
+                  <h1 class="tentang-page-title" id="tentangPageTitle">Tentang Properttax ID</h1>
+                </div>
+              </div>
+              <p class="tentang-lead">
+                Properttax ID adalah kalkulator pajak properti Indonesia yang membantu pengguna membaca gambaran biaya
+                transaksi dengan lebih tenang dan terarah. Saat nilai properti, jenis transaksi, dan komponen pajak
+                terasa sulit dipahami sekaligus, Properttax ID menyusunnya menjadi alur perhitungan yang lebih rapi, jelas,
+                dan mudah ditinjau kembali.
+              </p>
+              <p class="tentang-lead">
+                Gunakan Properttax ID untuk memperkirakan komponen biaya sebelum melanjutkan diskusi transaksi properti.
+              </p>
+            </div>
+          </section>
+
+          <section class="tentang-section" aria-labelledby="tentangFiturTitle">
+            <div class="tentang-section-header">
+              <h2 class="tentang-section-title" id="tentangFiturTitle">Fitur Utama</h2>
+              <p class="tentang-section-desc">
+                Aplikasi ini memisahkan kebutuhan utama berdasarkan jenis transaksi, sehingga pengguna dapat langsung
+                memilih perhitungan yang sesuai tanpa membaca informasi yang tidak diperlukan.
+              </p>
+            </div>
+            <div class="tentang-feature-grid">
+              <div class="tentang-feature-item">
+                <div class="tentang-feature-icon" style="background:var(--coral-soft);color:var(--coral);">
+                  <span class="em" role="img" aria-label="jual beli">🤝</span>
+                </div>
+                <div>
+                  <div class="tentang-feature-label">Jual Beli</div>
+                  <div class="tentang-feature-desc">Menampilkan estimasi PPh, PPN, BPHTB, dan total biaya transaksi.</div>
+                </div>
+              </div>
+              <div class="tentang-feature-item">
+                <div class="tentang-feature-icon" style="background:var(--purple-soft);color:var(--purple);">
+                  <span class="em" role="img" aria-label="hibah">🎁</span>
+                </div>
+                <div>
+                  <div class="tentang-feature-label">Hibah</div>
+                  <div class="tentang-feature-desc">Membantu membaca skenario hibah, termasuk pilihan relasi keluarga.</div>
+                </div>
+              </div>
+              <div class="tentang-feature-item">
+                <div class="tentang-feature-icon" style="background:var(--rose-soft);color:var(--rose);">
+                  <span class="em" role="img" aria-label="waris">📜</span>
+                </div>
+                <div>
+                  <div class="tentang-feature-label">Waris</div>
+                  <div class="tentang-feature-desc">Menyajikan estimasi BPHTB waris dan biaya terkait secara ringkas.</div>
+                </div>
+              </div>
+              <div class="tentang-feature-item">
+                <div class="tentang-feature-icon" style="background:var(--sage-soft);color:var(--sage);">
+                  <span class="em" role="img" aria-label="riwayat">🕓</span>
+                </div>
+                <div>
+                  <div class="tentang-feature-label">Riwayat</div>
+                  <div class="tentang-feature-desc">Menyimpan hasil agar beberapa skenario dapat dibandingkan kembali.</div>
+                </div>
+              </div>
+              <div class="tentang-feature-item">
+                <div class="tentang-feature-icon" style="background:var(--blue-soft);color:var(--blue);">
+                  <span class="em" role="img" aria-label="responsif">📱</span>
+                </div>
+                <div>
+                  <div class="tentang-feature-label">Responsif</div>
+                  <div class="tentang-feature-desc">Nyaman digunakan melalui layar desktop, tablet, maupun ponsel.</div>
+                </div>
+              </div>
+              <div class="tentang-feature-item">
+                <div class="tentang-feature-icon" style="background:var(--amber-soft);color:var(--amber);">
+                  <span class="em" role="img" aria-label="mode gelap">🌙</span>
+                </div>
+                <div>
+                  <div class="tentang-feature-label">Mode Gelap</div>
+                  <div class="tentang-feature-desc">Memberi pilihan tampilan yang lebih sesuai dengan preferensi pengguna.</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="tentang-section" aria-labelledby="tentangPenutupTitle">
+            <div class="tentang-section-header">
+              <h2 class="tentang-section-title" id="tentangPenutupTitle">Lebih Mudah Memahami Pajak Properti</h2>
+              <p class="tentang-section-desc">
+                Properttax ID tidak menggantikan penilaian profesional, tetapi dapat menjadi titik awal yang membantu pengguna
+                melihat struktur biaya dengan lebih percaya diri. Dengan rincian yang tersusun, pengguna dapat meninjau
+                nilai transaksi, membandingkan kemungkinan hasil, dan memahami bagian mana yang perlu diperhatikan lebih
+                lanjut. Jika Anda sedang menyiapkan jual beli, hibah, atau waris properti, mulai dari modul yang sesuai
+                dan gunakan hasilnya sebagai bahan pertimbangan awal.
+              </p>
+            </div>
+            <div class="tentang-info-box tentang-license-box">
+              <strong>Lisensi</strong>
+              © ErladhiPratama — Hak cipta dilindungi Undang-undang. Aplikasi ini bersifat open source dan dapat
+              digunakan, dimodifikasi, serta didistribusikan ulang secara bebas sesuai ketentuan
+              <a class="tentang-link" href="https://opensource.org/license/mit" target="_blank" rel="noopener noreferrer">lisensi MIT</a>.
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"><span class="em toast-status" aria-label="selesai" role="img">✅</span> <span id="toastMsg">Berhasil!</span></div>
+
+  <script>
+    const APP_NAME = 'Properttax ID';
+    const STORAGE_KEYS = {
+      jualBeli: 'properttax_id_jual_beli',
+      hibah: 'properttax_id_hibah',
+      waris: 'properttax_id_waris',
+      theme: 'properttax_id_theme'
+    };
+    const LEGACY_STORAGE_PREFIX = ['prop', 'tax'].join('');
+    const LEGACY_STORAGE_KEYS = {
+      jualBeli: `${LEGACY_STORAGE_PREFIX}_jual_beli`,
+      hibah: `${LEGACY_STORAGE_PREFIX}_hibah`,
+      waris: `${LEGACY_STORAGE_PREFIX}_waris`,
+      theme: `${LEGACY_STORAGE_PREFIX}_theme`
+    };
+
+    function migrateStorageKey(oldKey, newKey) {
+      if (localStorage.getItem(newKey) === null && localStorage.getItem(oldKey) !== null) {
+        localStorage.setItem(newKey, localStorage.getItem(oldKey));
+      }
+    }
+
+    Object.keys(STORAGE_KEYS).forEach(key => migrateStorageKey(LEGACY_STORAGE_KEYS[key], STORAGE_KEYS[key]));
+
+    let hasil = null, useFormat = false, konsultanVisible = false;
+    let hasilHibah = null, useFormatHibah = false, hibahKonsultanVisible = false;
+    let hasilWaris = null, useFormatWaris = false, warisKonsultanVisible = false;
+    let historyJB = JSON.parse(localStorage.getItem(STORAGE_KEYS.jualBeli) || '[]');
+    let historyHibah = JSON.parse(localStorage.getItem(STORAGE_KEYS.hibah) || '[]');
+    let historyWaris = JSON.parse(localStorage.getItem(STORAGE_KEYS.waris) || '[]');
+    let currentTheme = localStorage.getItem(STORAGE_KEYS.theme) || 'light';
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      const icon = document.getElementById('themeIcon');
+      const label = document.getElementById('themeLabel');
+      const input = document.getElementById('themeToggleInput');
+      if (icon) {
+        icon.textContent = theme === 'dark' ? '🌙' : '☀️';
+        icon.style.color = theme === 'dark' ? '#C4B5FD' : '#F59E0B';
+      }
+      if (label) label.textContent = theme === 'dark' ? 'Gelap' : 'Terang';
+      if (input) input.checked = theme === 'dark';
+      localStorage.setItem(STORAGE_KEYS.theme, theme);
+    }
+    function toggleTheme() {
+      currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+      applyTheme(currentTheme);
+    }
+
+    window.onload = () => {
+      applyTheme(currentTheme);
+      document.getElementById('tanggalTransaksi').value = new Date().toISOString().split('T')[0];
+      renderHistory();
+      renderHistoryHibah();
+      renderHistoryWaris();
+      onHubunganChange();
+      document.getElementById('npoptkpWaris').value = getDefaultNpoptkpWaris().toLocaleString('id-ID');
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          const parent = tab.closest('.card');
+          parent.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          parent.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+          const tc = document.getElementById('tab-' + tab.dataset.tab);
+          if (tc) tc.classList.add('active');
+        });
+      });
+    };
+
+    function switchModule(name) {
+      document.querySelectorAll('.nav-item').forEach(t => t.classList.toggle('active', t.dataset.module === name));
+      document.querySelectorAll('.module-panel').forEach(p => p.classList.toggle('active', p.id === 'module-' + name));
+      const titleEl = document.getElementById('topBarTitle');
+      const icons = { 'jual-beli': '🤝', 'hibah': '🎁', 'waris': '📜', 'tentang': 'ℹ️' };
+      const titles = { 'jual-beli': 'Kalkulator Pajak Jual Beli', 'hibah': 'Kalkulator Pajak Hibah', 'waris': 'Kalkulator Pajak Waris', 'tentang': 'Tentang Aplikasi' };
+      const colors = { 'jual-beli': 'var(--coral)', 'hibah': 'var(--purple)', 'waris': 'var(--rose)', 'tentang': 'var(--blue)' };
+      const bgColors = { 'jual-beli': 'var(--coral-soft)', 'hibah': 'var(--purple-soft)', 'waris': 'var(--rose-soft)', 'tentang': 'var(--blue-soft)' };
+      if (titleEl) {
+        titleEl.innerHTML = `<span class="em top-bar-icon" style="background:${bgColors[name]};color:${colors[name]};width:32px;height:32px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:16px;margin-right:4px;">${icons[name]}</span> ${titles[name]}`;
+      }
+    }
+
+    function parseRp(str) { return str ? (parseFloat(str.replace(/[^0-9]/g, '')) || 0) : 0; }
+    function formatRupiah(num, withDot = true) {
+      if (!num && num !== 0) return 'Rp 0';
+      return withDot ? 'Rp ' + Math.round(num).toLocaleString('id-ID') : 'Rp ' + Math.round(num);
+    }
+    function formatInputRp(input) {
+      const raw = input.value.replace(/[^0-9]/g, '');
+      input.value = raw ? parseInt(raw).toLocaleString('id-ID') : '';
+    }
+    const DEFAULT_BPHTB_RATE = 0.05;
+    const DEFAULT_WARIS_NPOPTKP = 300000000;
+
+    // Shared BPHTB helper so every module uses the same 5% x (NPOP - NPOPTKP) formula.
+    function hitungBphtb(npop, npoptkpInput = 0, defaultNpoptkp = 0) {
+      const npoptkp = npoptkpInput > 0 ? npoptkpInput : defaultNpoptkp;
+      const npopKena = Math.max(0, npop - npoptkp);
+      return { npoptkp, npopKena, bphtb: DEFAULT_BPHTB_RATE * npopKena };
+    }
+
+    function getDefaultNpoptkpWaris() {
+      return DEFAULT_WARIS_NPOPTKP;
+    }
+
+    window.__PROPERTTAX_ID_TEST_HOOKS__ = { hitungBphtb, getDefaultNpoptkpWaris, DEFAULT_BPHTB_RATE, DEFAULT_WARIS_NPOPTKP };
+    function toggleNumberFormat() { useFormat = document.getElementById('toggleFormat').checked; if (hasil) renderResult(hasil); }
+    function toggleNumberFormatHibah() { useFormatHibah = document.getElementById('toggleFormatHibah').checked; if (hasilHibah) renderHibah(hasilHibah); }
+    function toggleNumberFormatWaris() { useFormatWaris = document.getElementById('toggleFormatWaris').checked; if (hasilWaris) renderWaris(hasilWaris); }
+    function toggleDetail(id) { document.getElementById(id).classList.toggle('open'); }
+    function showToast(msg, ok = true) {
+      const t = document.getElementById('toast');
+      const statusIcon = t.querySelector('.toast-status');
+      statusIcon.textContent = ok ? '✅' : '⚠️';
+      statusIcon.setAttribute('aria-label', ok ? 'selesai' : 'peringatan');
+      document.getElementById('toastMsg').textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    /* JUAL BELI */
+    function resetForm() {
+      ['hargaJual', 'njop', 'npoptkp', 'npop'].forEach(id => document.getElementById(id).value = '');
+      document.getElementById('jenisProperti').value = 'komersial';
+      document.getElementById('statusPenjual').value = 'developer';
+      document.getElementById('statusPembeli').value = 'op';
+      document.getElementById('tanggalTransaksi').value = new Date().toISOString().split('T')[0];
+      hasil = null;
+      document.getElementById('emptyState').style.display = 'flex';
+      document.getElementById('resultContent').style.display = 'none';
+      document.getElementById('resultActions').style.display = 'none';
+      document.getElementById('konsultanToggle').style.display = 'none';
+      konsultanVisible = false;
+      document.getElementById('konsultanPanel').classList.remove('show');
+    }
+
+    function hitungPajak() {
+      const hargaJual = parseRp(document.getElementById('hargaJual').value);
+      if (!hargaJual) { showToast('Masukkan harga jual terlebih dahulu', false); return; }
+      const jenis = document.getElementById('jenisProperti').value;
+      const statusPenjual = document.getElementById('statusPenjual').value;
+      const statusPembeli = document.getElementById('statusPembeli').value;
+      const tanggal = document.getElementById('tanggalTransaksi').value;
+      const njopInput = parseRp(document.getElementById('njop').value);
+      const njop = njopInput || hargaJual;
+      const npopInput = parseRp(document.getElementById('npop').value);
+      const npop = npopInput || Math.max(hargaJual, njop);
+      const npoptkp = parseRp(document.getElementById('npoptkp').value) || 80000000;
+      const ppnRate = (tanggal ? new Date(tanggal) : new Date()) >= new Date('2025-01-01') ? 0.12 : 0.11;
+
+      let pph, pphRateLabel, pphNote;
+      if (jenis === 'subsidi' && statusPenjual === 'developer') {
+        pph = 0.01 * hargaJual; pphRateLabel = '1%';
+        pphNote = 'Tarif khusus rumah subsidi oleh developer (PKP). Dasar: PP 34/2016.';
+      } else {
+        pph = 0.025 * hargaJual; pphRateLabel = '2.5%';
+        pphNote = jenis === 'subsidi' ? 'Tarif 2.5% untuk penjual OP/Badan atas rumah subsidi. Dasar: PP 34/2016.' : 'Tarif final 2.5% x Harga Jual. Dasar: PP 34/2016 jo. PP 120/2015.';
+      }
+
+      let ppn = 0, ppnNote = '', ppnInsentif = false, ppnBadgeText = '';
+      if (jenis === 'subsidi') {
+        ppnNote = 'Rumah subsidi FLPP mendapat fasilitas Bebas PPN. Dasar: PMK 81/2019.';
+        ppnBadgeText = '<span style="color:var(--sage);font-weight:700;font-size:10px;letter-spacing:1px;">BEBAS PPN</span>';
+      } else if (statusPenjual === 'op') {
+        ppnNote = 'Penjual Orang Pribadi (non-PKP) tidak memungut PPN.';
+        ppnBadgeText = '<span style="color:var(--text-tertiary);font-size:10px;">non-PKP</span>';
+      } else {
+        if (hargaJual <= 5000000000) {
+          if (hargaJual <= 2000000000) {
+            ppnInsentif = true;
+            ppnNote = 'PPN DTP 100% untuk harga s.d. Rp 2 Miliar. Dasar: PMK 7/2025.';
+            ppnBadgeText = '<span style="color:var(--sage);font-weight:700;font-size:10px;letter-spacing:1px;">DTP 100%</span>';
+          } else {
+            ppn = ppnRate * (hargaJual - 2000000000); ppnInsentif = true;
+            ppnNote = `Rp 2 M pertama: DTP 100%. Sisa ${formatRupiah(hargaJual - 2000000000)} kena PPN ${(ppnRate * 100).toFixed(0)}%. Dasar: PMK 7/2025.`;
+            ppnBadgeText = '<span style="color:var(--amber);font-weight:700;font-size:10px;letter-spacing:1px;">DTP PARSIAL</span>';
+          }
+        } else {
+          ppn = ppnRate * hargaJual;
+          ppnNote = `Harga > Rp 5 M, tidak mendapat DTP. PPN ${(ppnRate * 100).toFixed(0)}% penuh. Dasar: UU HPP & PMK 7/2025.`;
+        }
+      }
+
+      const bphtbResult = hitungBphtb(npop, npoptkp, 80000000);
+      const bphtb = bphtbResult.bphtb;
+      const bphtbCalc = `NPOP: ${formatRupiah(npop)}\nNPOPTKP: ${formatRupiah(bphtbResult.npoptkp)}\nDasar BPHTB: ${formatRupiah(bphtbResult.npopKena)}\nBPHTB: 5% x ${formatRupiah(bphtbResult.npopKena)} = ${formatRupiah(bphtb)}`;
+
+      hasil = { jenis, hargaJual, njop, npop, npoptkp: bphtbResult.npoptkp, statusPenjual, statusPembeli, pph, pphRateLabel, pphNote, ppn, ppnNote, ppnInsentif, ppnBadgeText, ppnRate, bphtb, bphtbCalc, total: pph + ppn + bphtb, tanggal, timestamp: new Date().toISOString(), moduleType: 'jual-beli' };
+      historyJB.unshift(hasil);
+      if (historyJB.length > 10) historyJB.pop();
+      localStorage.setItem(STORAGE_KEYS.jualBeli, JSON.stringify(historyJB));
+      renderResult(hasil);
+      renderHistory();
+    }
+
+    function renderResult(r) {
+      const fmt = n => formatRupiah(n, !useFormat);
+      const jenisLabel = { subsidi: 'Rumah Subsidi', komersial: 'Rumah Komersial', tanah: 'Tanah' }[r.jenis];
+      document.getElementById('resultMeta').innerHTML = `
+    <div class="result-meta-item"><div class="result-meta-label">Jenis</div><div class="result-meta-value">${jenisLabel}</div></div>
+    <div class="result-meta-item"><div class="result-meta-label">Harga Jual</div><div class="result-meta-value">${fmt(r.hargaJual)}</div></div>
+    <div class="result-meta-item"><div class="result-meta-label">NPOP</div><div class="result-meta-value">${fmt(r.npop)}</div></div>
+    <div class="result-meta-item"><div class="result-meta-label">NPOPTKP</div><div class="result-meta-value">${fmt(r.npoptkp)}</div></div>`;
+      document.getElementById('pphDisplay').textContent = fmt(r.pph);
+      document.getElementById('pphDisplay').className = 'tax-amount' + (r.pph === 0 ? ' zero' : '');
+      document.getElementById('pphRate').textContent = `Tarif ${r.pphRateLabel}`;
+      document.getElementById('pphDetail').innerHTML = `<div class="law-ref"><span class="em" aria-label="regulasi" role="img">⚖️</span> PP 34/2016</div><div>${r.pphNote}</div><div class="calc-steps">${r.pphRateLabel} x ${fmt(r.hargaJual)} = ${fmt(r.pph)}</div>`;
+      document.getElementById('ppnDisplay').textContent = fmt(r.ppn);
+      document.getElementById('ppnDisplay').className = 'tax-amount' + (r.ppn === 0 ? ' zero' : '');
+      document.getElementById('ppnBadge').innerHTML = r.ppnBadgeText;
+      document.getElementById('ppnDetail').innerHTML = `<div class="law-ref"><span class="em" aria-label="regulasi" role="img">⚖️</span> UU HPP & PMK 7/2025</div>${r.ppnInsentif ? '<div class="insentif-badge"><span class="em" aria-label="unggulan" role="img">⭐</span> Insentif DTP Aktif</div>' : ''}<div>${r.ppnNote}</div><div class="calc-steps">Tarif PPN: ${(r.ppnRate * 100).toFixed(0)}%\nHarga Jual: ${fmt(r.hargaJual)}\nPPN Terutang: ${fmt(r.ppn)}</div>`;
+      document.getElementById('bphtbDisplay').textContent = fmt(r.bphtb);
+      document.getElementById('bphtbDisplay').className = 'tax-amount' + (r.bphtb === 0 ? ' zero' : '');
+      document.getElementById('bphtbRate').textContent = 'Tarif 5%';
+      document.getElementById('bphtbDetail').innerHTML = `<div class="law-ref"><span class="em" aria-label="regulasi" role="img">⚖️</span> UU 28/2009</div><div>BPHTB = 5% x (NPOP &ndash; NPOPTKP)</div><div class="calc-steps">${r.bphtbCalc}</div>`;
+      document.getElementById('totalDisplay').textContent = fmt(r.total);
+
+      const tips = [];
+      if (r.jenis === 'komersial' && r.hargaJual > 2000000000 && r.hargaJual <= 5000000000)
+        tips.push(`<div class="konsultan-tip"><span class="em" aria-label="ok" role="img">✅</span><div>Anda memanfaatkan insentif PPN DTP sebesar <strong>${formatRupiah(r.ppnRate * 2000000000)}</strong> untuk Rp 2 M pertama.</div></div>`);
+      if (r.jenis === 'komersial' && r.hargaJual > 5000000000)
+        tips.push(`<div class="konsultan-tip"><span class="em" aria-label="tips" role="img">💡</span><div>Harga > Rp 5 M tidak dapat DTP. Pertimbangkan <strong>pemecahan sertifikat</strong> atau <strong>cicilan bertahap</strong> &le; Rp 2 M (konsultasikan notaris).</div></div>`);
+      if (r.jenis === 'tanah' && r.statusPenjual === 'developer')
+        tips.push(`<div class="konsultan-tip"><span class="em" aria-label="tips" role="img">💡</span><div>Jika akan dibangun rumah subsidi, pertimbangkan skema KPR FLPP untuk PPh 1% dan Bebas PPN.</div></div>`);
+      if (r.npop - r.npoptkp < 0)
+        tips.push(`<div class="konsultan-tip"><span class="em">✅</span><div>BPHTB = Rp 0 karena NPOP tidak melebihi NPOPTKP. Tidak ada kewajiban BPHTB.</div></div>`);
+      if (r.statusPenjual === 'op' && r.jenis !== 'subsidi')
+        tips.push(`<div class="konsultan-tip"><span class="em" aria-label="info" role="img">ℹ️</span><div>Penjual OP tidak memungut PPN. PPh 2.5% tetap wajib disetor oleh penjual.</div></div>`);
+      if (r.jenis === 'subsidi')
+        tips.push(`<div class="konsultan-tip"><span class="em" aria-label="properti" role="img">🏠</span><div>PPh hanya 1% (via developer), PPN 0%. Pastikan pembeli memenuhi syarat FLPP.</div></div>`);
+      if (!tips.length)
+        tips.push(`<div class="konsultan-tip"><span class="em">☑️</span><div>Tidak ada rekomendasi khusus. Transaksi ini sudah optimal.</div></div>`);
+      document.getElementById('konsultanTips').innerHTML = tips.join('');
+
+      document.getElementById('emptyState').style.display = 'none';
+      document.getElementById('resultContent').style.display = 'block';
+      document.getElementById('resultActions').style.display = 'flex';
+      document.getElementById('konsultanToggle').style.display = 'block';
+    }
+
+    function toggleKonsultan() { konsultanVisible = !konsultanVisible; document.getElementById('konsultanPanel').classList.toggle('show', konsultanVisible); }
+
+    function renderHistory() {
+      const c = document.getElementById('historyContainer');
+      if (!historyJB.length) { c.innerHTML = '<div class="history-empty">Belum ada riwayat perhitungan</div>'; return; }
+      const jL = { subsidi: 'Subsidi', komersial: 'Komersial', tanah: 'Tanah' };
+      c.innerHTML = '<div class="history-list">' + historyJB.map((h, i) => `
+    <div class="history-item" onclick="loadHistory(${i})">
+      <div><div class="history-item-type"><span style="margin-right:5px;font-size:13px;">${h.jenis === 'tanah' ? '🏔️' : '🏠'}</span>${jL[h.jenis]}<span class="history-type-tag tag-jual">JUAL</span></div><div class="history-item-date">${new Date(h.timestamp).toLocaleString('id-ID', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</div></div>
+      <div><div class="history-item-amount">${formatRupiah(h.total)}</div><div class="history-item-price">${formatRupiah(h.hargaJual)}</div></div>
+    </div>`).join('') + '</div>';
+    }
+    function loadHistory(i) { hasil = historyJB[i]; renderResult(hasil); showToast('Riwayat dimuat'); }
+
+    function salinHasil() {
+      if (!hasil) return;
+      const r = hasil, fmt = n => formatRupiah(n);
+      const jL = { subsidi: 'Rumah Subsidi', komersial: 'Rumah Komersial', tanah: 'Tanah' }[r.jenis];
+      navigator.clipboard.writeText([`=== HASIL PERHITUNGAN PAJAK JUAL BELI (${APP_NAME}) ===`, `Jenis: ${jL}  |  Harga Jual: ${fmt(r.hargaJual)}`, `NPOP: ${fmt(r.npop)}  |  NPOPTKP: ${fmt(r.npoptkp)}`, ``, `PPh Penjual (${r.pphRateLabel}) : ${fmt(r.pph)}`, `PPN Pembeli     : ${fmt(r.ppn)}${r.ppnInsentif ? ' (DTP)' : ''}`, `BPHTB Pembeli   : ${fmt(r.bphtb)}`, `TOTAL PAJAK     : ${fmt(r.total)}`, ``, `Dihitung: ${new Date(r.timestamp).toLocaleString('id-ID')}`, APP_NAME].join('\n')).then(() => showToast('Berhasil disalin!'));
+    }
+
+    function unduhTeks() {
+      if (!hasil) return;
+      const r = hasil, fmt = n => formatRupiah(n);
+      const jL = { subsidi: 'Rumah Subsidi', komersial: 'Rumah Komersial', tanah: 'Tanah' }[r.jenis];
+      const text = [`KALKULATOR PAJAK JUAL BELI PROPERTI - ${APP_NAME}`, `=======================================`, `Tanggal: ${r.tanggal}  |  Jenis: ${jL}`, `Penjual: ${r.statusPenjual.toUpperCase()}  |  Pembeli: ${r.statusPembeli.toUpperCase()}`, ``, `Harga Jual : ${fmt(r.hargaJual)}`, `NPOP       : ${fmt(r.npop)}`, `NPOPTKP    : ${fmt(r.npoptkp)}`, ``, `PPh (${r.pphRateLabel})   : ${fmt(r.pph)}`, `PPN          : ${fmt(r.ppn)}`, `BPHTB        : ${fmt(r.bphtb)}`, `---------------------------------------`, `TOTAL        : ${fmt(r.total)}`, ``, r.pphNote, r.ppnNote, ``, `Disclaimer: Estimasi - konsultasikan dengan konsultan pajak.`].join('\n');
+      const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob([text], { type: 'text/plain' })), download: `pajak-jual-beli-${Date.now()}.txt` });
+      a.click(); showToast('File diunduh!');
+    }
+
+    /* HIBAH */
+    function onHubunganChange() {
+      const hub = document.getElementById('hubunganHibah').value;
+      const npoptkpEl = document.getElementById('npoptkpHibah');
+      if (!parseRp(npoptkpEl.value) || parseRp(npoptkpEl.value) === 300000000) {
+        npoptkpEl.value = '80.000.000';
+      }
+      const raw = npoptkpEl.value.replace(/[^0-9]/g, '');
+      if (raw) npoptkpEl.value = parseInt(raw).toLocaleString('id-ID');
+    }
+
+    function resetHibah() {
+      ['nilaiHibah', 'npoptkpHibah', 'njopHibah'].forEach(id => document.getElementById(id).value = '');
+      document.getElementById('hubunganHibah').value = 'keluarga_lurus';
+      document.getElementById('statusPemberiHibah').value = 'op';
+      document.getElementById('jenisPropertiHibah').value = 'rumah';
+      hasilHibah = null;
+      document.getElementById('hibahEmptyState').style.display = 'flex';
+      document.getElementById('hibahResultContent').style.display = 'none';
+      document.getElementById('hibahResultActions').style.display = 'none';
+      document.getElementById('hibahKonsultanToggle').style.display = 'none';
+      hibahKonsultanVisible = false;
+      document.getElementById('hibahKonsultanPanel').classList.remove('show');
+      onHubunganChange();
+    }
+
+    function hitungHibah() {
+      const nilaiHibah = parseRp(document.getElementById('nilaiHibah').value);
+      if (!nilaiHibah) { showToast('Masukkan nilai properti terlebih dahulu', false); return; }
+      const hubungan = document.getElementById('hubunganHibah').value;
+      const statusPemberi = document.getElementById('statusPemberiHibah').value;
+      const jenisProperti = document.getElementById('jenisPropertiHibah').value;
+      const njopInput = parseRp(document.getElementById('njopHibah').value);
+      const njop = njopInput || nilaiHibah;
+      const nilaiDasar = Math.max(nilaiHibah, njop);
+      const npoptkp = parseRp(document.getElementById('npoptkpHibah').value) || 80000000;
+
+      let pphHibah = 0, pphHibahNote = '', pphHibahLabel = '', pphBebas = false;
+      if (hubungan === 'keluarga_lurus' && statusPemberi === 'op') {
+        pphHibah = 0; pphBebas = true;
+        pphHibahLabel = 'DIKECUALIKAN';
+        pphHibahNote = 'Hibah antara orang tua dan anak kandung (garis lurus satu derajat) DIKECUALIKAN dari objek PPh. Pemberi hibah tidak dikenai pajak penghasilan atas hibah ini.';
+      } else {
+        pphHibah = 0.025 * nilaiDasar; pphHibahLabel = '2.5%';
+        const alasan = statusPemberi === 'badan' ? 'Pemberi hibah berupa badan usaha' : (hubungan === 'bukan_keluarga' ? 'Hibah kepada pihak ketiga/bukan keluarga' : 'Hubungan keluarga di luar garis lurus satu derajat');
+        pphHibahNote = `${alasan} dikenai PPh Final 2.5% dari NJOP/nilai pasar (mana yang lebih tinggi). PPh ditanggung pemberi hibah.`;
+      }
+
+      const npopHibah = nilaiDasar;
+      const bphtbResult = hitungBphtb(npopHibah, npoptkp, 80000000);
+      const bphtbHibah = bphtbResult.bphtb;
+      const bphtbNote = `5% x (NPOP - NPOPTKP)\n= 5% x (${formatRupiah(npopHibah)} - ${formatRupiah(bphtbResult.npoptkp)})\n= ${formatRupiah(bphtbHibah)}\nBPHTB dikenakan kepada penerima hibah.\nDasar: UU 28/2009 Psl 87 & Perda setempat.`;
+      const totalHibah = pphHibah + bphtbHibah;
+
+      hasilHibah = {
+        nilaiHibah, nilaiDasar, njop, npoptkp: bphtbResult.npoptkp, hubungan, statusPemberi, jenisProperti,
+        pphHibah, pphHibahLabel, pphHibahNote, pphBebas,
+        bphtbHibah, bphtbNote, npopHibah, npopKenaHibah: bphtbResult.npopKena,
+        totalHibah, timestamp: new Date().toISOString(), moduleType: 'hibah'
+      };
+      historyHibah.unshift(hasilHibah);
+      if (historyHibah.length > 10) historyHibah.pop();
+      localStorage.setItem(STORAGE_KEYS.hibah, JSON.stringify(historyHibah));
+      renderHibah(hasilHibah);
+      renderHistoryHibah();
+    }
+
+    function renderHibah(r) {
+      const fmt = n => formatRupiah(n, !useFormatHibah);
+      const hubLabel = { keluarga_lurus: 'Orang Tua â†” Anak', keluarga_lain: 'Keluarga Lainnya', bukan_keluarga: 'Pihak Ketiga', badan: 'Badan Usaha' }[r.hubungan];
+      const jenisLabel = { tanah_bangunan: 'Tanah & Bangunan', tanah: 'Tanah', rumah: 'Rumah/Bangunan' }[r.jenisProperti];
+      document.getElementById('hibahResultMeta').innerHTML = `
+    <div class="result-meta-item"><div class="result-meta-label">Hubungan</div><div class="result-meta-value">${hubLabel}</div></div>
+    <div class="result-meta-item"><div class="result-meta-label">Nilai Properti</div><div class="result-meta-value">${fmt(r.nilaiHibah)}</div></div>
+    <div class="result-meta-item"><div class="result-meta-label">Dasar Hitung</div><div class="result-meta-value">${fmt(r.nilaiDasar)}</div></div>
+    <div class="result-meta-item"><div class="result-meta-label">NPOPTKP</div><div class="result-meta-value">${fmt(r.npoptkp)}</div></div>`;
+      document.getElementById('hibahPphDisplay').textContent = fmt(r.pphHibah);
+      document.getElementById('hibahPphDisplay').className = 'tax-amount' + (r.pphBebas ? ' zero' : '');
+      document.getElementById('hibahPphRate').textContent = r.pphBebas ? 'Dikecualikan (0%)' : `Tarif ${r.pphHibahLabel}`;
+      document.getElementById('hibahPphDetail').innerHTML = `
+    <div class="law-ref"><span class="em" aria-label="regulasi" role="img">⚖️</span> UU PPh Psl 4(3)a â€¢ PP 55/2022</div>
+    ${r.pphBebas ? '<div class="bebas-badge"><span class="em" aria-label="bebas pajak" role="img">🛡️</span> BEBAS PPh â€” Dikecualikan oleh UU</div>' : '<div class="kena-badge"><span class="em">⚠️</span> KENA PPh Final 2.5%</div>'}
+    <div style="margin-top:6px;">${r.pphHibahNote}</div>
+    <div class="calc-steps">${r.pphBebas ? 'Tarif: 0% (DIKECUALIKAN)\nDasar: UU PPh Psl 4 ayat (3) huruf a\nPMK 90/PMK.03/2020' : `2.5% x ${fmt(r.nilaiDasar)} = ${fmt(r.pphHibah)}\nDasar: PP 34/2016 â€¢ PP 55/2022`}</div>`;
+      document.getElementById('hibahBphtbDisplay').textContent = fmt(r.bphtbHibah);
+      document.getElementById('hibahBphtbDisplay').className = 'tax-amount' + (r.bphtbHibah === 0 ? ' zero' : '');
+      document.getElementById('hibahBphtbDetail').innerHTML = `
+    <div class="law-ref"><span class="em" aria-label="regulasi" role="img">⚖️</span> UU 28/2009 â€¢ Perda</div>
+    <div>BPHTB tetap dikenakan kepada <strong>penerima hibah</strong>, meskipun PPh pemberi dikecualikan.</div>
+    <div class="calc-steps">${r.bphtbNote}</div>`;
+      document.getElementById('hibahTotalDisplay').textContent = fmt(r.totalHibah);
+
+      const tips = [];
+      if (r.pphBebas)
+        tips.push(`<div class="konsultan-tip"><span class="em" aria-label="bebas pajak" role="img">🛡️</span><div>Hibah antara orang tua dan anak kandung <strong>BEBAS PPh</strong>. Manfaatkan jalur ini untuk transfer aset properti keluarga secara efisien pajak.</div></div>`);
+      if (!r.pphBebas && r.pphHibah > 0)
+        tips.push(`<div class="konsultan-tip"><span class="em" aria-label="tips" role="img">💡</span><div>Pertimbangkan apakah penerima hibah termasuk <strong>keluarga garis lurus satu derajat</strong> (orang tua/anak kandung). Jika ya, hibah dapat dikecualikan dari PPh.</div></div>`);
+      if (r.bphtbHibah === 0)
+        tips.push(`<div class="konsultan-tip"><span class="em">✅</span><div>BPHTB = Rp 0 karena nilai properti tidak melebihi NPOPTKP. Penerima tidak membayar BPHTB.</div></div>`);
+      if (r.bphtbHibah > 0 && r.hubungan === 'keluarga_lurus')
+        tips.push(`<div class="konsultan-tip"><span class="em" aria-label="info" role="img">ℹ️</span><div>Meski PPh = 0, <strong>BPHTB tetap harus dibayar</strong> oleh penerima hibah. Pastikan dana BPHTB sudah disiapkan sebelum proses akta di PPAT.</div></div>`);
+      if (r.nilaiHibah > 5000000000)
+        tips.push(`<div class="konsultan-tip"><span class="em">⚠️</span><div>Nilai properti cukup besar. Pertimbangkan konsultasi dengan <strong>estate planner</strong> untuk strategi peralihan aset yang efisien jangka panjang.</div></div>`);
+      if (!tips.length)
+        tips.push(`<div class="konsultan-tip"><span class="em">☑️</span><div>Tidak ada rekomendasi khusus. Transaksi ini sudah terstruktur dengan baik.</div></div>`);
+      document.getElementById('hibahKonsultanTips').innerHTML = tips.join('');
+
+      document.getElementById('hibahEmptyState').style.display = 'none';
+      document.getElementById('hibahResultContent').style.display = 'block';
+      document.getElementById('hibahResultActions').style.display = 'flex';
+      document.getElementById('hibahKonsultanToggle').style.display = 'block';
+    }
+
+    function toggleHibahKonsultan() { hibahKonsultanVisible = !hibahKonsultanVisible; document.getElementById('hibahKonsultanPanel').classList.toggle('show', hibahKonsultanVisible); }
+
+    function renderHistoryHibah() {
+      const c = document.getElementById('hibahHistoryContainer');
+      if (!historyHibah.length) { c.innerHTML = '<div class="history-empty">Belum ada riwayat perhitungan hibah</div>'; return; }
+      const hL = { keluarga_lurus: 'Orang Tuaâ†”Anak', keluarga_lain: 'Keluarga Lain', bukan_keluarga: 'Pihak Ketiga', badan: 'Badan Usaha' };
+      c.innerHTML = '<div class="history-list">' + historyHibah.map((h, i) => `
+    <div class="history-item" onclick="loadHistoryHibah(${i})">
+      <div><div class="history-item-type"><span class="em" aria-label="hibah" role="img">🎁</span>${hL[h.hubungan]}<span class="history-type-tag tag-hibah">HIBAH</span></div><div class="history-item-date">${new Date(h.timestamp).toLocaleString('id-ID', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</div></div>
+      <div><div class="history-item-amount" style="color:var(--purple);">${formatRupiah(h.totalHibah)}</div><div class="history-item-price">${formatRupiah(h.nilaiHibah)}</div></div>
+    </div>`).join('') + '</div>';
+    }
+    function loadHistoryHibah(i) { hasilHibah = historyHibah[i]; renderHibah(hasilHibah); showToast('Riwayat hibah dimuat'); }
+
+    function salinHasilHibah() {
+      if (!hasilHibah) return;
+      const r = hasilHibah, fmt = n => formatRupiah(n);
+      const hL = { keluarga_lurus: 'Orang Tua/Anak', keluarga_lain: 'Keluarga Lainnya', bukan_keluarga: 'Pihak Ketiga', badan: 'Badan Usaha' }[r.hubungan];
+      navigator.clipboard.writeText([`=== HASIL PERHITUNGAN PAJAK HIBAH (${APP_NAME}) ===`, `Hubungan : ${hL}`, `Nilai Properti : ${fmt(r.nilaiHibah)}`, `Dasar Hitung   : ${fmt(r.nilaiDasar)}  |  NPOPTKP: ${fmt(r.npoptkp)}`, ``, `PPh Pemberi Hibah   : ${fmt(r.pphHibah)} (${r.pphBebas ? 'DIKECUALIKAN' : r.pphHibahLabel})`, `BPHTB Penerima Hibah: ${fmt(r.bphtbHibah)}`, `TOTAL PAJAK HIBAH   : ${fmt(r.totalHibah)}`, ``, `Dihitung: ${new Date(r.timestamp).toLocaleString('id-ID')}`, APP_NAME].join('\n')).then(() => showToast('Berhasil disalin!'));
+    }
+
+    function unduhTeksHibah() {
+      if (!hasilHibah) return;
+      const r = hasilHibah, fmt = n => formatRupiah(n);
+      const hL = { keluarga_lurus: 'Orang Tua/Anak', keluarga_lain: 'Keluarga Lainnya', bukan_keluarga: 'Pihak Ketiga', badan: 'Badan Usaha' }[r.hubungan];
+      const text = [`KALKULATOR PAJAK HIBAH PROPERTI - ${APP_NAME}`, `=======================================`, `Hubungan        : ${hL}`, `Status Pemberi  : ${r.statusPemberi.toUpperCase()}`, `Jenis Properti  : ${r.jenisProperti}`, ``, `Nilai Properti  : ${fmt(r.nilaiHibah)}`, `Dasar Hitung    : ${fmt(r.nilaiDasar)}`, `NPOPTKP         : ${fmt(r.npoptkp)}`, ``, `PPh Pemberi (${r.pphHibahLabel}) : ${fmt(r.pphHibah)}`, `BPHTB Penerima   : ${fmt(r.bphtbHibah)}`, `---------------------------------------`, `TOTAL PAJAK HIBAH: ${fmt(r.totalHibah)}`, ``, r.pphHibahNote, ``, `Dasar Hukum: UU PPh Psl 4(3)a, PP 55/2022, PMK 90/2020, UU 28/2009`, `Disclaimer: Estimasi - konsultasikan dengan PPAT/konsultan pajak.`].join('\n');
+      const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob([text], { type: 'text/plain' })), download: `pajak-hibah-${Date.now()}.txt` });
+      a.click(); showToast('File diunduh!');
+    }
+
+    /* WARIS */
+    function resetWaris() {
+      ['nilaiWaris', 'npoptkpWaris', 'biayaAdminWaris'].forEach(id => document.getElementById(id).value = '');
+      document.getElementById('jenisPropertiWaris').value = 'rumah';
+      hasilWaris = null;
+      document.getElementById('warisEmptyState').style.display = 'flex';
+      document.getElementById('warisResultContent').style.display = 'none';
+      document.getElementById('warisResultActions').style.display = 'none';
+      document.getElementById('warisKonsultanToggle').style.display = 'none';
+      document.getElementById('warisBiayaRow').style.display = 'none';
+      warisKonsultanVisible = false;
+      document.getElementById('warisKonsultanPanel').classList.remove('show');
+      document.getElementById('npoptkpWaris').value = getDefaultNpoptkpWaris().toLocaleString('id-ID');
+    }
+
+    function hitungWaris() {
+      const nilaiTotal = parseRp(document.getElementById('nilaiWaris').value);
+      if (!nilaiTotal) { showToast('Masukkan nilai properti warisan terlebih dahulu', false); return; }
+      const jenisProperti = document.getElementById('jenisPropertiWaris').value;
+      const npoptkpInput = parseRp(document.getElementById('npoptkpWaris').value);
+      const biayaAdmin = parseRp(document.getElementById('biayaAdminWaris').value);
+      const npoptkp = npoptkpInput || getDefaultNpoptkpWaris();
+      const pphWaris = 0;
+      const pphWarisNote = 'Warisan BUKAN objek PPh berdasarkan UU PPh Pasal 4 ayat (3) huruf b. Ahli waris tidak dikenai PPh atas nilai properti yang diterima, tanpa terkecuali dan tanpa syarat hubungan.';
+      const npopWaris = nilaiTotal;
+      const dasarBphtb = npopWaris + npoptkp;
+      const bphtbWaris = DEFAULT_BPHTB_RATE * dasarBphtb;
+      const bphtbNote = `NPOP Waris        : ${formatRupiah(npopWaris)}\nNPOPTKP Waris     : ${formatRupiah(npoptkp)}${npoptkpInput ? ' (override wilayah/input manual)' : ' (default aplikasi)'}\nDasar BPHTB Waris : ${formatRupiah(dasarBphtb)}\nBPHTB Waris       : 5% x ${formatRupiah(dasarBphtb)} = ${formatRupiah(bphtbWaris)}\nCatatan           : Kalkulator waris ini menggunakan asumsi 1 ahli waris sesuai alur balik nama waris.\nDasar referensi   : Kebijakan internal aplikasi sesuai permintaan perubahan modul waris.`;
+      const totalWaris = pphWaris + bphtbWaris + biayaAdmin;
+
+      hasilWaris = {
+        nilaiTotal, jenisProperti, npoptkp,
+        pphWaris, pphWarisNote,
+        bphtbWaris, dasarBphtb, bphtbNote, npopWaris,
+        biayaAdmin, totalWaris,
+        timestamp: new Date().toISOString(), moduleType: 'waris'
+      };
+      historyWaris.unshift(hasilWaris);
+      if (historyWaris.length > 10) historyWaris.pop();
+      localStorage.setItem(STORAGE_KEYS.waris, JSON.stringify(historyWaris));
+      renderWaris(hasilWaris);
+      renderHistoryWaris();
+    }
+
+    function renderWaris(r) {
+      const fmt = n => formatRupiah(n, !useFormatWaris);
+      document.getElementById('warisResultMeta').innerHTML = `
+    <div class="result-meta-item"><div class="result-meta-label">Nilai Total Warisan</div><div class="result-meta-value">${fmt(r.nilaiTotal)}</div></div>
+    <div class="result-meta-item"><div class="result-meta-label">Jenis Properti</div><div class="result-meta-value">${r.jenisProperti}</div></div>
+    <div class="result-meta-item"><div class="result-meta-label">NPOP Waris</div><div class="result-meta-value">${fmt(r.npopWaris)}</div></div>
+    <div class="result-meta-item"><div class="result-meta-label">NPOPTKP</div><div class="result-meta-value">${fmt(r.npoptkp)}</div></div>`;
+      document.getElementById('warisPphDisplay').textContent = 'Rp 0';
+      document.getElementById('warisPphBadge').innerHTML = '<div class="bebas-badge" style="font-size:10px;padding:2px 8px;"><span class="em" aria-label="bebas pajak" role="img">🛡️</span> BEBAS PPh</div>';
+      document.getElementById('warisPphDetail').innerHTML = `
+    <div class="law-ref"><span class="em" aria-label="regulasi" role="img">⚖️</span> UU PPh Psl 4(3)b • PP 55/2022</div>
+    <div class="bebas-badge"><span class="em" aria-label="bebas pajak" role="img">🛡️</span> Warisan BUKAN Objek PPh untuk proses waris</div>
+    <div style="margin-top:6px;">${r.pphWarisNote}</div>
+    <div class="calc-steps">PPh = Rp 0\nDasar: UU No.36/2008 Psl 4 ayat (3) huruf b\nPP 55/2022 • PMK 90/PMK.03/2020</div>`;
+      document.getElementById('warisBphtbPerDisplay').textContent = fmt(r.bphtbWaris);
+      document.getElementById('warisBphtbPerDisplay').className = 'tax-amount' + (r.bphtbWaris === 0 ? ' zero' : '');
+      document.getElementById('warisBphtbDetail').innerHTML = `
+    <div class="law-ref"><span class="em" aria-label="regulasi" role="img">⚖️</span> Informasi Perhitungan Waris</div>
+    <div>Modul waris menggunakan asumsi balik nama untuk 1 ahli waris sesuai perubahan yang diminta.</div>
+    <div class="calc-steps">NPOP Waris      : ${fmt(r.npopWaris)}\nNPOPTKP Waris   : ${fmt(r.npoptkp)}\nDasar BPHTB     : ${fmt(r.dasarBphtb)}\nBPHTB Waris     : 5% x ${fmt(r.dasarBphtb)} = ${fmt(r.bphtbWaris)}</div>`;
+      document.getElementById('warisBphtbTotalDisplay').textContent = fmt(r.dasarBphtb);
+      document.getElementById('warisBphtbTotalDisplay').className = 'tax-amount' + (r.dasarBphtb === 0 ? ' zero' : '');
+      document.getElementById('warisJumlahLabel').textContent = 'NPOP + NPOPTKP';
+      document.getElementById('warisBphtbTotalDetail').innerHTML = `
+    <div class="law-ref"><span class="em" aria-label="regulasi" role="img">⚖️</span> Ringkasan Rumus Waris</div>
+    <div class="calc-steps">${r.bphtbNote}</div>`;
+      if (r.biayaAdmin > 0) {
+        document.getElementById('warisBiayaRow').style.display = 'block';
+        document.getElementById('warisBiayaDisplay').textContent = fmt(r.biayaAdmin);
+        document.getElementById('warisBiayaDetail').innerHTML = `
+      <div class="law-ref"><span class="em" aria-label="regulasi" role="img">⚖️</span> PP 128/2015</div>
+      <div>Estimasi biaya notaris/PPAT, balik nama sertifikat BPN, dan biaya administrasi lainnya.</div>
+      <div class="calc-steps">Biaya administrasi (estimasi): ${fmt(r.biayaAdmin)}\nBiaya ini bukan pajak, namun merupakan biaya wajib dalam proses balik nama properti waris.</div>`;
+      } else {
+        document.getElementById('warisBiayaRow').style.display = 'none';
+      }
+      document.getElementById('warisTotalDisplay').textContent = fmt(r.totalWaris);
+
+      const tips = [];
+      tips.push(`<div class="konsultan-tip"><span class="em" aria-label="bebas pajak" role="img">🛡️</span><div>Warisan properti tetap <strong>BEBAS PPh</strong>. Modul ini hanya menghitung BPHTB waris dan biaya administrasi.</div></div>`);
+      tips.push(`<div class="konsultan-tip"><span class="em" aria-label="bphtb" role="img">📋</span><div>Dasar BPHTB waris saat ini mengikuti rumus <strong>5% x (NPOP + NPOPTKP)</strong> dengan asumsi <strong>1 ahli waris</strong> sesuai perubahan modul.</div></div>`);
+      if (r.nilaiTotal > 2000000000)
+        tips.push(`<div class="konsultan-tip"><span class="em" aria-label="tips" role="img">💡</span><div>Untuk properti bernilai besar, pastikan NPOPTKP yang dipakai sudah sesuai kebijakan daerah agar estimasi tidak meleset.</div></div>`);
+      if (r.biayaAdmin === 0)
+        tips.push(`<div class="konsultan-tip"><span class="em" aria-label="info" role="img">ℹ️</span><div>Anda belum memasukkan estimasi biaya administrasi. Tambahkan biaya akta notaris, PNBP BPN balik nama, dan PPH (jika ada) agar estimasi total lebih akurat.</div></div>`);
+      document.getElementById('warisKonsultanTips').innerHTML = tips.join('');
+
+      document.getElementById('warisEmptyState').style.display = 'none';
+      document.getElementById('warisResultContent').style.display = 'block';
+      document.getElementById('warisResultActions').style.display = 'flex';
+      document.getElementById('warisKonsultanToggle').style.display = 'block';
+    }
+    function toggleWarisKonsultan() { warisKonsultanVisible = !warisKonsultanVisible; document.getElementById('warisKonsultanPanel').classList.toggle('show', warisKonsultanVisible); }
+
+    function renderHistoryWaris() {
+      const c = document.getElementById('warisHistoryContainer');
+      if (!historyWaris.length) { c.innerHTML = '<div class="history-empty">Belum ada riwayat perhitungan waris</div>'; return; }
+      c.innerHTML = '<div class="history-list">' + historyWaris.map((h, i) => `
+    <div class="history-item" onclick="loadHistoryWaris(${i})">
+      <div><div class="history-item-type"><span class="em" aria-label="waris" role="img">📜</span>Perhitungan Waris<span class="history-type-tag tag-waris">WARIS</span></div><div class="history-item-date">${new Date(h.timestamp).toLocaleString('id-ID', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</div></div>
+      <div><div class="history-item-amount" style="color:var(--rose);">${formatRupiah(h.totalWaris)}</div><div class="history-item-price">${formatRupiah(h.nilaiTotal)}</div></div>
+    </div>`).join('') + '</div>';
+    }
+    function loadHistoryWaris(i) { hasilWaris = historyWaris[i]; renderWaris(hasilWaris); showToast('Riwayat waris dimuat'); }
+
+    function salinHasilWaris() {
+      if (!hasilWaris) return;
+      const r = hasilWaris, fmt = n => formatRupiah(n);
+      navigator.clipboard.writeText([`=== HASIL PERHITUNGAN PAJAK WARIS (${APP_NAME}) ===`, `Jenis Properti  : ${r.jenisProperti}`, `Nilai Total     : ${fmt(r.nilaiTotal)}`, `NPOP Waris      : ${fmt(r.npopWaris)}  |  NPOPTKP: ${fmt(r.npoptkp)}`, ``, `PPh Ahli Waris       : Rp 0 (BEBAS - UU PPh Psl 4(3)b)`, `Dasar BPHTB Waris    : ${fmt(r.dasarBphtb)}`, `BPHTB Waris          : ${fmt(r.bphtbWaris)}`, `Biaya Administrasi   : ${fmt(r.biayaAdmin)}`, `TOTAL PERKIRAAN BIAYA: ${fmt(r.totalWaris)}`, ``, `Dihitung: ${new Date(r.timestamp).toLocaleString('id-ID')}`, APP_NAME].join('\n')).then(() => showToast('Berhasil disalin!'));
+    }
+
+    function unduhTeksWaris() {
+      if (!hasilWaris) return;
+      const r = hasilWaris, fmt = n => formatRupiah(n);
+      const text = [`KALKULATOR PAJAK WARIS PROPERTI - ${APP_NAME}`, `=======================================`, `Jenis Properti : ${r.jenisProperti}`, `Asumsi Modul   : 1 ahli waris`, ``, `Nilai Total Warisan : ${fmt(r.nilaiTotal)}`, `NPOP Waris         : ${fmt(r.npopWaris)}`, `NPOPTKP Waris      : ${fmt(r.npoptkp)}`, `Dasar BPHTB        : ${fmt(r.dasarBphtb)}`, ``, `PPh Ahli Waris  : Rp 0 (BEBAS PAJAK)`, `BPHTB Waris     : ${fmt(r.bphtbWaris)}`, `Biaya Admin     : ${fmt(r.biayaAdmin)}`, `---------------------------------------`, `TOTAL BIAYA WARIS: ${fmt(r.totalWaris)}`, ``, `CATATAN:`, r.pphWarisNote, r.bphtbNote, ``, `Disclaimer: Estimasi - konsultasikan dengan Notaris/PPAT dan kebijakan daerah setempat.`].join('\n');
+      const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob([text], { type: 'text/plain' })), download: `pajak-waris-${Date.now()}.txt` });
+      a.click(); showToast('File diunduh!');
+    }
+    /* ============================================
+       MOBILE RESPONSIVE JAVASCRIPT
+       ============================================ */
+
+    // ── Elements ──────────────────────────────────
+    const hamburgerBtn  = document.getElementById('hamburgerBtn');
+    const sidebarEl     = document.querySelector('.sidebar');
+    const overlayEl     = document.getElementById('sidebarOverlay');
+    const mobileThemeBtn  = document.getElementById('mobileThemeBtn');
+    const mobileThemeIcon = document.getElementById('mobileThemeIcon');
+
+    // ── Drawer open / close ───────────────────────
+    function openDrawer() {
+      sidebarEl.classList.add('drawer-open');
+      overlayEl.classList.add('visible');
+      hamburgerBtn.classList.add('open');
+      hamburgerBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      sidebarEl.classList.remove('drawer-open');
+      overlayEl.classList.remove('visible');
+      hamburgerBtn.classList.remove('open');
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    hamburgerBtn.addEventListener('click', () => {
+      sidebarEl.classList.contains('drawer-open') ? closeDrawer() : openDrawer();
+    });
+
+    overlayEl.addEventListener('click', closeDrawer);
+
+    // Close drawer when a nav item is tapped on mobile
+    document.querySelectorAll('.nav-item').forEach(item => {
+      item.addEventListener('click', () => {
+        if (window.innerWidth <= 768) closeDrawer();
+      });
+    });
+
+    // ── Swipe-to-close gesture ────────────────────
+    let swipeTouchStartX = 0;
+    let swipeTouchStartY = 0;
+
+    sidebarEl.addEventListener('touchstart', e => {
+      swipeTouchStartX = e.touches[0].clientX;
+      swipeTouchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    sidebarEl.addEventListener('touchend', e => {
+      const dx = swipeTouchStartX - e.changedTouches[0].clientX;
+      const dy = Math.abs(swipeTouchStartY - e.changedTouches[0].clientY);
+      // Only close if horizontal swipe > 70px and not mostly vertical
+      if (dx > 70 && dy < 60) closeDrawer();
+    }, { passive: true });
+
+    // Swipe-from-left-edge to open drawer
+    document.addEventListener('touchstart', e => {
+      swipeTouchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    document.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - swipeTouchStartX;
+      const dy = Math.abs(e.changedTouches[0].clientY - (window.innerHeight / 2));
+      if (swipeTouchStartX < 24 && dx > 60 && dy < 120 && window.innerWidth <= 768) {
+        openDrawer();
+      }
+    }, { passive: true });
+
+    // ── Mobile theme toggle button ────────────────
+    function syncMobileThemeIcon() {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      mobileThemeIcon.textContent = isDark ? '🌙' : '☀️'; mobileThemeIcon.className = '';
+      mobileThemeIcon.style.color = isDark ? 'var(--purple)' : 'var(--amber)'; mobileThemeIcon.style.fontSize = '16px';
+    }
+
+    mobileThemeBtn.addEventListener('click', () => {
+      toggleTheme(); // call existing toggleTheme()
+      syncMobileThemeIcon();
+    });
+
+    // Patch original toggleTheme to also sync mobile icon
+    const _origToggleTheme = window.toggleTheme;
+    window.toggleTheme = function() {
+      _origToggleTheme();
+      syncMobileThemeIcon();
+    };
+
+    // ── Close drawer on Escape key ────────────────
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeDrawer();
+    });
+
+    // ── Reset drawer state on resize ─────────────
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        closeDrawer();
+        document.body.style.overflow = '';
+      }
+    });
+
+    // ── Initial sync ─────────────────────────────
+    syncMobileThemeIcon();
+
+  </script>
+</body>
+
+</html>
