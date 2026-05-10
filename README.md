@@ -1,14 +1,13 @@
-# Panduan Penggunaan Aplikasi Properttax ID
+# Panduan Aplikasi Properttax ID
 
 Panduan ini dibuat berdasarkan file HTML aplikasi kalkulator pajak properti yang diupload. 
 Aplikasi ini digunakan untuk membantu menghitung estimasi pajak transaksi properti di Indonesia seperti jual beli, hibah, dan waris. 
 
 ---
 
-# 1. Gambaran Umum Aplikasi
+# 1. Gambaran Umum
 
 Aplikasi bernama:
-
 **Properttax ID – Kalkulator Pajak Properti Indonesia**
 
 Fitur utama aplikasi:
@@ -22,7 +21,7 @@ Fitur utama aplikasi:
 
 ---
 
-# 2. Tampilan Utama Aplikasi
+# 2. Tampilan Utama
 
 Saat aplikasi dibuka, pengguna akan melihat beberapa bagian utama:
 
@@ -87,7 +86,6 @@ Klik menu:
 ## Langkah 2 — Isi Informasi Properti
 
 Pilih jenis properti:
-
 * Rumah Subsidi (FLPP)
 * Rumah Komersial
 * Tanah
@@ -97,7 +95,6 @@ Pilih jenis properti:
 ## Langkah 3 — Pilih Status Penjual
 
 Pilihan:
-
 * Developer / PKP
 * Orang Pribadi (OP)
 * Badan Usaha
@@ -110,7 +107,6 @@ Menentukan tarif PPh yang berlaku.
 ## Langkah 4 — Pilih Status Pembeli
 
 Pilihan:
-
 * Orang Pribadi
 * Badan Usaha
 
@@ -131,7 +127,6 @@ Tanggal digunakan untuk menentukan tarif PPN:
 ## Langkah 6 — Isi Nilai Properti
 
 Masukkan:
-
 * Harga transaksi
 * NJOP
 * NPOPTKP (jika tersedia)
@@ -156,7 +151,6 @@ Sistem akan otomatis menghitung:
 ## Langkah 8 — Lihat Detail Perhitungan
 
 Klik bagian hasil pajak untuk membuka detail:
-
 * Dasar hukum
 * Rumus perhitungan
 * Langkah kalkulasi
@@ -196,7 +190,6 @@ Sistem akan menentukan:
    **📜 Pajak Waris**
 
 2. Isi data warisan:
-
    * Nilai aset
    * NJOP
    * Hubungan ahli waris
@@ -233,7 +226,6 @@ Cara mengganti:
 Aplikasi sudah responsive untuk HP/tablet.
 
 Fitur mobile:
-
 * Hamburger menu
 * Sidebar slide
 * Tampilan form otomatis 1 kolom
@@ -292,11 +284,9 @@ Riwayat transaksi akan tersimpan sementara di aplikasi.
 # 11. Catatan Penting
 
 Aplikasi ini bersifat:
-
 * Simulasi / estimasi
 * Bukan pengganti konsultasi resmi
 * Tetap perlu verifikasi ke:
-
   * Notaris/PPAT
   * Kantor Pajak
   * Bapenda daerah
@@ -308,7 +298,6 @@ Aplikasi ini bersifat:
 Properttax ID adalah aplikasi kalkulator pajak properti modern yang membantu pengguna menghitung estimasi pajak transaksi properti secara cepat dan mudah, baik melalui desktop maupun perangkat mobile.
 
 Fitur unggulan:
-
 * Interface modern
 * Responsive mobile
 * Multi-modul pajak
